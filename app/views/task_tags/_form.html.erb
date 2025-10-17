@@ -1,0 +1,27 @@
+<%= form_with(model: task_tag) do |form| %>
+  <% if task_tag.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(task_tag.errors.count, "error") %> prohibited this task_tag from being saved:</h2>
+
+      <ul>
+        <% task_tag.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :task_id, style: "display: block" %>
+    <%= form.number_field :task_id %>
+  </div>
+
+  <div>
+    <%= form.label :tag_name, style: "display: block" %>
+    <%= form.text_field :tag_name %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

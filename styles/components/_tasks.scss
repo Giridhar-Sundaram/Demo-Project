@@ -1,0 +1,255 @@
+@import "../abstracts/index";
+
+.task {
+  @include flex-align-start-justify-between;
+  flex-direction: column;
+  width: 100%;
+  min-height: 8.6rem;
+  background-color: $white;
+  gap: 1.4rem;
+  border-radius: 0.4rem;
+  border: 1px solid $grey-100;
+  padding: 12px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $grey-100;
+  }
+
+  span {
+    @include text-regular-sm;
+    @include outfit-font;
+    color: $secondary-900;
+    word-break: normal;
+  }
+
+  @include task-status-states;
+
+  &__footer {
+    @include flex-align-start-justify-between;
+    width: 100%;
+
+    span {
+      @include text-regular-xs;
+      @include outfit-font;
+      color: $secondary-700;
+    }
+
+    .icon-container {
+      @include flex-align-center-justify-center;
+      gap: 0.4rem;
+
+      img:first-child {
+        @include make-square(1.8rem);
+        padding: 2px;
+      }
+
+      img:nth-child(2) {
+        padding: 0px;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.new-task {
+  @extend .task;
+
+  &__details {
+    @include flex-align-center-justify-between;
+    width: 100%;
+
+    &__controls {
+      @include flex-align-start-justify-start;
+    }
+
+    button {
+      padding: 4px;
+      border-radius: 4px;
+      background-color: $transparent;
+      cursor: pointer;
+
+      &.submit {
+        border: 1px solid $grey-100;
+      }
+
+      &:hover {
+        background-color: $grey-50;
+      }
+    }
+
+    img {
+      @include make-square(16px);
+    }
+  }
+
+  &:focus-within {
+    outline: 1px solid $primary-1000;
+  }
+
+  &:hover {
+    background-color: $white;
+  }
+}
+
+.edit-task {
+  height: 88%;
+  width: 77%;
+  background-color: $white;
+  border-radius: 0.8rem;
+  padding: 4rem;
+
+  &__header {
+    @include flex-align-center-justify-between;
+    @include text-regular-xs;
+    color: $secondary-700;
+
+    div {
+      @include flex-align-center-justify-center;
+      gap: 8px;
+    }
+
+    button {
+      @include make-square(32px);
+    }
+    img {
+      @include make-square(18px);
+    }
+  }
+
+  &__content {
+    @include flex-align-center-justify-center;
+    height: calc(100% - 32px);
+    gap: 30px;
+  }
+
+  &__left-section {
+    flex: 6;
+    height: 100%;
+    overflow: auto;
+
+    h3 {
+      color: $secondary-800;
+    }
+
+    .btn-group {
+      margin-top: 1.6rem;
+    }
+  }
+
+  &__right-section {
+    @include flex-align-start-justify-start;
+    flex-direction: column;
+    gap: 16px;
+    flex: 4;
+    height: 100%;
+
+    @include task-status-states;
+
+    button {
+      @include flex-align-center-justify-center;
+      @include text-medium-sm;
+      @include outfit-font;
+      gap: 8px;
+      text-transform: capitalize;
+
+      img {
+        @include make-square(18px);
+      }
+    }
+  }
+
+  &__description {
+    margin-top: 20px;
+
+    div {
+      margin-top: 14px;
+      @include text-regular-sm;
+      word-break: break-word;
+    }
+  }
+
+  &__attachments {
+    margin-top: 20px;
+
+    .images-grid {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(3, 230px);
+      gap: 1rem;
+
+      img {
+        border-radius: 5px;
+        width: 100%;
+        height: 144px;
+        object-fit: cover;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__comments {
+    margin-top: 20px;
+
+    &__new {
+      @include flex-align-start-justify-start;
+      padding: 25px 0px;
+      width: 100%;
+      gap: 14px;
+
+      .profile-image {
+        img {
+          width: 40px;
+        }
+      }
+    }
+  }
+
+  &__task-details {
+    @include flex-align-start-justify-start;
+    @include text-regular-md;
+    @include outfit-font;
+    color: $secondary-800;
+    width: 100%;
+
+    &:not(:first-child) {
+      padding-top: 16px;
+    }
+    .label {
+      flex: 5;
+    }
+
+    .value {
+      @include flex-align-center-justify-start;
+      gap: 10px;
+      flex: 5;
+    }
+
+    img {
+      @include make-square(18px);
+    }
+
+    span {
+      text-transform: capitalize;
+    }
+  }
+
+  &__task-configuration {
+    @include flex-align-center-justify-between;
+    @include text-regular-sm;
+    @include outfit-font;
+    width: 100%;
+
+    color: $secondary-600;
+
+    .time {
+      span {
+        display: block;
+      }
+    }
+  }
+
+  .priority-imag {
+    width: 18px;
+  }
+}

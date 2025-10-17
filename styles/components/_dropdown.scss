@@ -1,0 +1,19 @@
+@import "../abstracts/index";
+
+.dropdown {
+  @include text-regular-sm;
+  width: 22rem;
+
+  button {
+    @include flex-align-center-justify-start;
+    width: 100%;
+    gap: 1rem;
+    background: $transparent;
+    padding: 1.2rem 2rem;
+    height: 2.8rem;
+
+    img {
+      @include make-square(18px);
+    }
+  }
+}

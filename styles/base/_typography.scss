@@ -1,0 +1,39 @@
+@import "abstracts/index";
+
+h1 {
+  @include text-bold-xxl;
+  color: $secondary-900;
+}
+h2 {
+  @include text-bold-xl;
+  color: $secondary-900;
+}
+h3 {
+  @include text-bold-lg;
+  color: $secondary-900;
+}
+h4 {
+  @include text-bold-md;
+  color: $secondary-900;
+}
+h5 {
+  @include text-bold-sm;
+  color: $secondary-900;
+}
+h6 {
+  @include text-bold-xs;
+  color: $secondary-900;
+}
+
+p {
+  font-family: $base-font-family;
+  font-size: map-get($font-size, xs);
+  line-height: $base-line-height;
+  font-weight: 400;
+  color: $secondary-1000;
+  margin-bottom: 1.6rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

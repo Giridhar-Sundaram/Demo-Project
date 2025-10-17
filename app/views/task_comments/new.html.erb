@@ -1,0 +1,11 @@
+<% content_for :title, "New task comment" %>
+
+<h1>New task comment</h1>
+
+<%= render "form", task_comment: @task_comment %>
+
+<br>
+
+<div>
+  <%= link_to "Back to task comments", task_comments_path %>
+</div>

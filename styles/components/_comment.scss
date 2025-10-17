@@ -1,0 +1,53 @@
+@import "../abstracts/index";
+
+.comment {
+  @include flex-align-start-justify-start;
+  flex-direction: column;
+  width: 100%;
+  color: $secondary-900;
+
+  &__profile {
+    @include flex-align-start-justify-center;
+    gap: 16px;
+
+    img {
+      @include make-square(28px);
+    }
+
+    span {
+      @include text-medium-sm;
+    }
+  }
+
+  &__text {
+    @include text-regular-sm;
+    @include outfit-font;
+    padding-left: 44px;
+    color: $secondary-900;
+  }
+
+  &:not(:last-child) {
+    padding-bottom: 14px;
+  }
+}
+
+.add-comment {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  textarea {
+    @include flex-align-center-justify-start;
+    border-radius: 6px;
+    border: 1px solid $grey-100;
+    padding: 12px;
+    vertical-align: middle;
+  }
+
+  span {
+    @include text-regular-xs;
+    @include outfit-font;
+    color: $grey-700;
+    margin-top: 6px;
+  }
+}

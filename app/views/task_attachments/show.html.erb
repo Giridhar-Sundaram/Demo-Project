@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @task_attachment %>
+
+<div>
+  <%= link_to "Edit this task attachment", edit_task_attachment_path(@task_attachment) %> |
+  <%= link_to "Back to task attachments", task_attachments_path %>
+
+  <%= button_to "Destroy this task attachment", @task_attachment, method: :delete %>
+</div>

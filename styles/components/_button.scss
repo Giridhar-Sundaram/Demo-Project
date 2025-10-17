@@ -1,0 +1,79 @@
+@import "../abstracts/index";
+
+.btn {
+  @include flex-align-center-justify-center;
+  outline: none;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 5px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &--primary {
+    @extend .btn;
+    color: $white;
+
+    @include button-sizes;
+    @include button-color($white, $primary-1000, $primary-1000, $primary-500);
+
+    &--round {
+      @extend .btn--primary;
+      border-radius: 50px;
+
+      @include button-round-sizes;
+    }
+
+    &--grey {
+      @include button-color($grey-800, $grey-100, $grey-100, $grey-200);
+    }
+
+    &--white {
+      @include button-color($grey-800, $white, $white, $grey-100);
+    }
+  }
+
+  &--secondary {
+    @extend .btn;
+    color: $primary-1000;
+    background-color: $white;
+    border: 1px solid $primary-1000;
+
+    @include button-sizes;
+
+    &:hover {
+      background-color: $primary-100;
+    }
+
+    &--grey {
+      @include button-color($grey-800, $white, $grey-200, $grey-200);
+    }
+  }
+
+  &-group {
+    @include flex-align-center-justify-start;
+    gap: 8px;
+
+    button {
+      @include flex-align-center-justify-center;
+      @include text-medium-sm;
+      color: $grey-800;
+      gap: 6px;
+      padding: 8px 16px;
+      width: fit-content;
+      height: 36px;
+
+      img {
+        @include make-square(18px);
+        padding: 2px;
+      }
+    }
+
+    .no-text {
+      padding: 6px;
+    }
+  }
+}

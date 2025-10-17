@@ -1,0 +1,49 @@
+@import "../abstracts/index";
+
+.login-page {
+  @include flex-align-center-justify-center;
+  height: 100vh;
+
+  &__container {
+    @include flex-align-start-justify-center;
+    @include container;
+    padding-left: 15rem;
+    flex-direction: column;
+
+    &__header {
+      @include flex-align-start-justify-start;
+      width: 35rem;
+      height: 25%;
+      padding-top: 3rem;
+    }
+
+    &__body {
+      @include flex-align-start-justify-start;
+      width: 35rem;
+      flex-direction: column;
+      height: 50%;
+    }
+
+    &__footer {
+      @include flex-align-end-justify-center;
+      width: 35rem;
+      height: 25%;
+    }
+  }
+
+  &__container-illustration {
+    @include flex-align-center-justify-end;
+    @include container;
+
+    img {
+      max-height: 100%;
+    }
+  }
+
+  &--form {
+    @include flex-align-start-justify-start;
+    flex-direction: column;
+    gap: 1.4rem;
+    width: 100%;
+  }
+}

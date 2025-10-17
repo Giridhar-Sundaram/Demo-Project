@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @task_comment %>
+
+<div>
+  <%= link_to "Edit this task comment", edit_task_comment_path(@task_comment) %> |
+  <%= link_to "Back to task comments", task_comments_path %>
+
+  <%= button_to "Destroy this task comment", @task_comment, method: :delete %>
+</div>

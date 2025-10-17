@@ -1,0 +1,13 @@
+<div class="sidebar">
+    <div class ="sidebar__heading">
+        <label>Projects</label>
+        <%= link_to image_tag("icons/add.svg", alt: "add new project"),
+            "#", 
+            target: "_blank",
+            class: "btn--primary--round btn--primary--round--sm btn--primary--white"
+        %>
+    </div>
+    <div class ="sidebar__content">
+        <%= render partial: "layouts/shared/projects"%>
+    </div>
+</div>

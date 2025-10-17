@@ -1,0 +1,110 @@
+@import "../abstracts/index";
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: $base-font-size;
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+
+  &:visited,
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Set height definitively based on viewport */
+  min-height: 100vh;
+  position: relative;
+  line-height: 1.5;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+}
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+div {
+  font-size: inherit;
+}
+
+button {
+  outline: none;
+  border: none;
+}
+
+textarea {
+  @include text-regular-xs;
+  @include outfit-font;
+  width: 100%;
+  resize: none;
+  border: none;
+
+  &:focus {
+    outline: none;
+    border: none;
+  }
+}
+
+#ember-body {
+  isolation: isolate;
+  background-color: $sky-blue-200;
+  padding: 3rem 2rem 5rem 2rem;
+  height: 100%;
+}
+
+#portal {
+  display: none;
+  position: absolute;
+  top: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($black, 0.4);
+  z-index: 1000;
+}

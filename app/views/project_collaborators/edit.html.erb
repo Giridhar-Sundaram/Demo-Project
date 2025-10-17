@@ -1,0 +1,12 @@
+<% content_for :title, "Editing project collaborator" %>
+
+<h1>Editing project collaborator</h1>
+
+<%= render "form", project_collaborator: @project_collaborator %>
+
+<br>
+
+<div>
+  <%= link_to "Show this project collaborator", @project_collaborator %> |
+  <%= link_to "Back to project collaborators", project_collaborators_path %>
+</div>

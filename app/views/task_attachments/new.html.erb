@@ -1,0 +1,11 @@
+<% content_for :title, "New task attachment" %>
+
+<h1>New task attachment</h1>
+
+<%= render "form", task_attachment: @task_attachment %>
+
+<br>
+
+<div>
+  <%= link_to "Back to task attachments", task_attachments_path %>
+</div>

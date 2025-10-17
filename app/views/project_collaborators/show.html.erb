@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @project_collaborator %>
+
+<div>
+  <%= link_to "Edit this project collaborator", edit_project_collaborator_path(@project_collaborator) %> |
+  <%= link_to "Back to project collaborators", project_collaborators_path %>
+
+  <%= button_to "Destroy this project collaborator", @project_collaborator, method: :delete %>
+</div>

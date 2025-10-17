@@ -1,0 +1,98 @@
+@import "../abstracts/index";
+
+.board {
+  @include flex-align-start-justify-start;
+  @include full-size;
+  flex-direction: column;
+  gap: 2rem;
+  overflow: auto;
+
+  &__header {
+    @include flex-align-center-justify-start;
+    width: 100%;
+
+    &--section {
+      @include flex-align-center-justify-center;
+      gap: 20px;
+    }
+
+    .input-field__search {
+      width: 23.4rem;
+    }
+  }
+
+  &__contents {
+    @include flex-align-start-justify-center;
+    @include full-size;
+    gap: 1rem;
+
+    &--status {
+      @include flex-align-start-justify-start;
+      flex-direction: column;
+      min-height: 100%;
+      gap: 10px;
+      flex: 1 1 100%;
+      border-radius: 0.8rem;
+      height: fit-content;
+      padding: 12px 8px;
+      background-color: $grey-50;
+
+      .header {
+        @include flex-align-center-justify-start;
+        @include text-medium-sm;
+        gap: 8px;
+        color: $secondary-800;
+        width: 100%;
+
+        img {
+          height: 1.6rem;
+          width: 1.6rem;
+        }
+
+        @include task-status-states;
+      }
+
+      .tasks {
+        @include flex-align-center-justify-start;
+        flex-direction: column;
+        gap: 4px;
+        width: 100%;
+      }
+
+      .drop-content {
+        @include flex-align-center-justify-center;
+        @include make-square(100%);
+        @include text-regular-sm;
+        @include outfit-font;
+        flex: 1;
+        border-radius: 0.4rem;
+        border: 1px solid $primary-1000;
+        background-color: $primary-100;
+        color: $primary-1000;
+        min-height: 750px;
+      }
+
+      .drag-over {
+        background-color: $primary-300;
+      }
+
+      .footer {
+        @include flex-align-center-justify-center;
+        @include text-regular-xs;
+        color: $secondary-700;
+        gap: 0.8rem;
+        cursor: pointer;
+        padding: 0.2rem;
+        border-radius: 0.5rem;
+
+        img {
+          @include make-square(1.4rem);
+        }
+
+        &:hover {
+          background-color: $secondary-200;
+        }
+      }
+    }
+  }
+}

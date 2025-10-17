@@ -1,0 +1,25 @@
+@import "../abstracts/index";
+
+.sidebar {
+  @include flex-align-center-justify-center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  gap: 1.4rem;
+
+  &__heading {
+    @include flex-align-center-justify-between;
+    width: 100%;
+
+    label {
+      @include text-medium-md;
+    }
+  }
+
+  &__content {
+    @include flex-align-start-justify-start;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+  }
+}

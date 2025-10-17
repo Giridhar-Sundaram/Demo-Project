@@ -1,0 +1,35 @@
+<div class="project-grid">
+  <% @projects.each do |project| %>
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title"><%= project.project_name %></div>
+        <div class="project-icon"><%= project.project_name[0].upcase %></div>
+      </div>
+      
+      <div class="status-badge status-<%= project.project_status %>">
+        <%= project.project_status.titleize %>
+      </div>
+      
+      <div class="stats">
+        <div class="stat-item">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 22c5.514 0 10-4.486 10-10S17.514 2 12 2 2 6.486 2 12s4.486 10 10 10zM11 7h2v6h-2V7zm0 8h2v2h-2v-2z"/></svg>
+          Todo : <%= project.todo_count %>
+        </div>
+        <div class="stat-item">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M9 19H7v-7h2v7zm6 0h-2v-4h2v4zm-3-5h-2v-7h2v7z"/></svg>
+          In Progress: <%= project.inprogress_count %>
+        </div>
+        <div class="stat-item">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 12c2.761 0 5-2.239 5-5S14.761 2 12 2 7 4.239 7 7s2.239 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z"/></svg>
+          Done: <%= project.done_count %>
+        </div>
+      </div>
+      
+      <div class="progress-container" aria-label="Project progress">
+        <div class="progress-bar" 
+             style="width: <%= project.progress_percent %>%; background-color: <%= progress_color(project.project_status) %>;"
+        ></div>
+      </div>
+    </div>
+  <% end %>
+</div>

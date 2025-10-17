@@ -1,0 +1,83 @@
+@import "../abstracts/index";
+
+.input-field {
+  @include flex-align-start-justify-center;
+  flex-direction: column;
+  width: inherit;
+  gap: 6px;
+
+  input {
+    @include input-default-style;
+    @include text-regular-md;
+    height: 4.4rem;
+    padding: 1.2rem 2rem;
+    color: $grey-800;
+  }
+
+  input:hover {
+    background: $grey-50;
+  }
+
+  input:focus {
+    outline: 1px solid $primary-1000;
+  }
+
+  input::placeholder {
+    @include text-regular-sm;
+    color: $secondary-600;
+  }
+
+  &__search {
+    @include flex-align-center-justify-between;
+    @include input-default-style;
+
+    flex-direction: row;
+    padding: 0rem 0.8rem;
+    background-color: $white;
+
+    &:focus-within {
+      outline: 1px solid $primary-1000; /* blue on input focus */
+    }
+
+    label {
+      display: none;
+    }
+
+    input {
+      @include text-regular-sm;
+      height: 3.4rem;
+      padding: 0px;
+      border: 0px;
+      width: calc(100% - 34px);
+      &:focus {
+        outline: none;
+      }
+    }
+
+    img {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+  }
+
+  &__checkbox {
+    @extend .input-field;
+    @include flex-align-center-justify-start;
+    flex-direction: row;
+
+    input {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+
+    input:focus {
+      outline: none;
+    }
+  }
+
+  &__label {
+    @include text-medium-xs;
+    color: $grey-700;
+  }
+}

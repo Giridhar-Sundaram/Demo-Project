@@ -1,0 +1,195 @@
+$black: #000000;
+$white: #ffffff;
+$transparent: transparent;
+// grey scale values
+$grey-50: #f5f5f5;
+$grey-100: #ececec;
+$grey-200: #d8d8d8;
+$grey-300: #c5c5c5;
+$grey-400: #b1b1b1;
+$grey-500: #9e9e9e;
+$grey-600: #7e7e7e;
+$grey-700: #5f5f5f;
+$grey-800: #3f3f3f;
+
+// primary values
+$primary-100: #e7f0fd;
+$primary-200: #cee0fa;
+$primary-300: #b6d1f7;
+$primary-400: #9dc1f4;
+$primary-500: #1a75ff;
+$primary-600: #6ca3ef;
+$primary-700: #5494ed;
+$primary-800: #3b84e9;
+$primary-900: #2375e7;
+$primary-1000: #0a65e4;
+
+// Secondary values
+$secondary-100: #e7e7eb;
+$secondary-200: #d0cfd7;
+$secondary-300: #b9b7c3;
+$secondary-400: #a19faf;
+$secondary-500: #89879b;
+$secondary-600: #726f86;
+$secondary-700: #5b5772;
+$secondary-800: #433f5e;
+$secondary-900: #2c274a;
+$secondary-1000: #140f36;
+
+// Success values
+$success-50: #f6fef9;
+$success-100: #ecfdf3;
+$success-200: #d1fadf;
+$success-300: #a6f4c5;
+$success-400: #6ce9a6;
+$success-500: #32d583;
+$success-600: #12b76a;
+$success-700: #00b34d;
+$success-800: #027a48;
+$success-900: #05603a;
+$success-1000: #054f31;
+
+// Error values
+$error-50: #fffbfa;
+$error-100: #fef3f2;
+$error-200: #fee4e2;
+$error-300: #fecdca;
+$error-400: #fda29b;
+$error-500: #f97066;
+$error-600: #f04438;
+$error-700: #d92d20;
+$error-800: #b42318;
+$error-900: #912018;
+$error-1000: #7a271a;
+
+// Warning values
+$warning-50: #fffcf5;
+$warning-100: #fffaeb;
+$warning-200: #fef0c7;
+$warning-300: #fedf89;
+$warning-400: #fec84b;
+$warning-500: #fdb022;
+$warning-600: #f79009;
+$warning-700: #dc6803;
+$warning-800: #b54708;
+$warning-900: #93370d;
+$warning-1000: #792e0d;
+
+// Sky blue values
+$sky-blue-100: #f9fcff;
+$sky-blue-200: #f2faff;
+$sky-blue-300: #ecf7ff;
+$sky-blue-400: #e5f5ff;
+$sky-blue-500: #dff2ff;
+$sky-blue-600: #d8efff;
+$sky-blue-700: #d2edff;
+$sky-blue-800: #cbeaff;
+$sky-blue-900: #c5e8ff;
+$sky-blue-1000: #bee5ff;
+
+$box-shadow-1: 0 1px 3px rgba(0, 0, 0, 0.1);
+$box-shadow-2: 0 1px 3px rgba(0, 0, 0, 0.3);
+
+$label-colors: (
+  todo: (
+    bg: #d0cfd7,
+    text: #433f5e,
+  ),
+  inprogress: (
+    bg: #fef0c7,
+    text: #b54708,
+  ),
+  done: (
+    bg: #d1fadf,
+    text: #027a48,
+  ),
+
+  design: (
+    bg: #ffe5d9,
+    text: #7b4f43,
+  ),
+  frontend: (
+    bg: #d0f4de,
+    text: #2b4a3e,
+  ),
+  backend: (
+    bg: #fce1e4,
+    text: #6d3e44,
+  ),
+  security: (
+    bg: #fff3cd,
+    text: #665c32,
+  ),
+  database: (
+    bg: #e0f7fa,
+    text: #33585b,
+  ),
+  mobile: (
+    bg: #e8eaf6,
+    text: #303f9f,
+  ),
+  documentation: (
+    bg: #fce8d5,
+    text: #5e4734,
+  ),
+  refactor: (
+    bg: #e6f7ff,
+    text: #35697a,
+  ),
+  qa: (
+    bg: #e2f0cb,
+    text: #486c28,
+  ),
+  performance: (
+    bg: #f9f9c5,
+    text: #606025,
+  ),
+  testing: (
+    bg: #e1f5fe,
+    text: #317187,
+  ),
+  devops: (
+    bg: #f3e5f5,
+    text: #6b3a6f,
+  ),
+  data: (
+    bg: #dcfce7,
+    text: #2e5b3d,
+  ),
+  component: (
+    bg: #ffe0f0,
+    text: #7b3b58,
+  ),
+  automation: (
+    bg: #fff0f5,
+    text: #7d4660,
+  ),
+  review: (
+    bg: #f0fff4,
+    text: #38764e,
+  ),
+  tooling: (
+    bg: #e5f6fd,
+    text: #2b6173,
+  ),
+  feature: (
+    bg: #fef9e7,
+    text: #6e5f32,
+  ),
+  ux: (
+    bg: #f3f0ff,
+    text: #4d47a4,
+  ),
+  a11y: (
+    bg: #fffbea,
+    text: #6e5b27,
+  ),
+  management: (
+    bg: #e4f0ec,
+    text: #2e5e51,
+  ),
+  cloud: (
+    bg: #e0f7fa,
+    text: #33676c,
+  ),
+);

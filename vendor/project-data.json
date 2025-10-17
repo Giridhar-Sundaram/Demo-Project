@@ -1,0 +1,59 @@
+{
+  "user": {
+    "user_id": 1,
+    "user_name": "Giridhar Sundar",
+    "user_email": "giridhar@gmail.com",
+    "user_password": "system123#",
+    "user_projects": [
+      {
+        "project_id": 1,
+        "project_name": "Test Demo",
+        "project_key": "BP",
+        "project_collaborators": [
+          { "user_id": 2, "user_name": "Alice Johnson" },
+          { "user_id": 3, "user_name": "Teresa Heikrujam" },
+          { "user_id": 4, "user_name": "Ruby Pamei" }
+        ],
+        "tasks": [
+          {
+            "project_id": 1,
+            "project_key": "BP",
+            "task_id": 1,
+            "task_name": "Design Homepage",
+            "task_description": "Create the initial wireframes and mockups for the homepage.",
+            "task_status": "inprogress",
+            "task_priority": "high",
+            "task_assignedTo": "Alice Johnson",
+            "task_dueDate": "2025-10-20",
+            "task_createdAt": "2025-10-01T09:00:00Z",
+            "task_updatedAt": "2025-10-10T15:30:00Z",
+            "task_comments": [
+              {
+                "author": "Bob",
+                "text": "Make sure to use the new branding colors.",
+                "date": "2025-10-05"
+              },
+              {
+                "author": "Alice Johnson",
+                "text": "Wireframes ready for review.",
+                "date": "2025-10-10"
+              }
+            ],
+            "task_tags": ["design", "frontend"],
+            "task_attachments": [
+              {
+                "document": "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=800&q=80",
+                "type": "img",
+                "name": "Sunset over the mountains",
+                "task_id": 1,
+                "task_name": "Design Homepage",
+                "project_key": "BP",
+                "project_id": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+<% @projects.each do |project| %>
+  <div class="projects">
+    
+    <%# 1. ACCORDION HEADER (Clickable) %>
+    <figure class="projects__heading" data-project-id="<%= project.id %>">
+      <%= image_tag("https://api.dicebear.com/9.x/bottts-neutral/svg?seed=#{project.project_key}", alt: project.project_name)%>
+      <figcaption><%= project.project_name %></figcaption>
+      <div class="dropdown-icon"><%= image_tag("/assets/icons/fi-rr-angle-small-down.svg") %></div> <%# Accordion state indicator %>
+    </figure>
+    
+    <%# 2. ACCORDION CONTENT (Collapsible) %>
+    <ul class="projects__actions" id="project-actions-<%= project.id %>">
+        <%# Use URL helpers with the project object for correct routing (e.g., project_board_path(project)) %>
+
+        <%# 1. Project Board Link %>
+          <li>
+          <%= link_to "/em/project/#{project.id}/board" ,class: "link", data: { ember_link: true } do %>
+            <%= image_tag("icons/board.svg", alt: "Project Board") %>
+            <span>Board</span>
+          <% end %> 
+          </li>
+
+
+        <%# 2. Project List Link %>
+          <li>
+           <%= link_to "/em/project/#{project.id}/list" ,class:"link", data: { ember_link: true } do %>
+              <%= image_tag("icons/fi-rr-list.svg", alt: "Project List") %>
+              <span>List</span>
+            <% end %>
+          </li>
+     
+
+        <%# 3. Project Attachments Link %>
+          <li>
+           <%= link_to "/em/project/#{project.id}/attachment" ,class:"link",data: { ember_link: true } do %>
+            <%= image_tag("icons/fi-rr-clip.svg", alt: "Project Attachments") %>
+            <span>Attachments</span>
+           <% end %>
+          </li>
+    </ul>
+  </div>
+<% end %>
+
+<script>
+  console.log('Custom event caught! Running setup...');
+  document.dispatchEvent(new CustomEvent('projectsRendered'));
+</script>

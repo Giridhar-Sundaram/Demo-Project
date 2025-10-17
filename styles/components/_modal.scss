@@ -1,0 +1,6 @@
+@import "../abstracts/index";
+
+.modal {
+  @include flex-align-center-justify-center;
+  @include make-square(100%);
+}

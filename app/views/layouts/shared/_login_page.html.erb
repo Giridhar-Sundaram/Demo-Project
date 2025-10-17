@@ -1,0 +1,14 @@
+<div class="login-page">
+  <div class="login-page__container">
+    <div class="login-page__container__header">
+      <%= render partial: "layouts/shared/logo"%>
+    </div>
+    <div class="login-page__container__body">
+        <%= yield %>
+    </div>
+    <div class="login-page__container__footer"></div>
+  </div>
+  <div class = "login-page__container-illustration">
+    <%= image_tag "illustrations/onboarding-illustration.svg"%>
+  </div>
+</div>

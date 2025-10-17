@@ -1,0 +1,47 @@
+@import "../abstracts/index";
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 0.8rem;
+  background-color: $white;
+  table-layout: fixed;
+  border: 1px solid $grey-100;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+
+  th {
+    color: $secondary-700;
+  }
+
+  tr:hover {
+    background-color: $grey-50;
+  }
+
+  th,
+  td {
+    @include text-regular-sm;
+    @include outfit-font;
+    padding: 0.8rem 2rem;
+    border: 1px solid $grey-100;
+    text-align: left;
+  }
+
+  .cell-content {
+    @include flex-align-start-justify-start;
+    @include task-status-states;
+
+    flex-wrap: wrap;
+
+    gap: 1rem;
+  }
+
+  tfoot {
+  }
+
+  /* Make checkbox a bit bigger */
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+}

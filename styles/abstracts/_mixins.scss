@@ -1,0 +1,250 @@
+@import "sizes";
+@import "colors";
+
+@mixin flex-align-justify($align: stretch, $justify: flex-start) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin flex-align-start-justify-start {
+  @include flex-align-justify(flex-start, flex-start);
+}
+
+@mixin flex-align-start-justify-center {
+  @include flex-align-justify(flex-start, center);
+}
+
+@mixin flex-align-start-justify-end {
+  @include flex-align-justify(flex-start, flex-end);
+}
+
+@mixin flex-align-start-justify-between {
+  @include flex-align-justify(flex-start, space-between);
+}
+
+@mixin flex-align-center-justify-start {
+  @include flex-align-justify(center, flex-start);
+}
+
+@mixin flex-align-center-justify-center {
+  @include flex-align-justify(center, center);
+}
+
+@mixin flex-align-center-justify-end {
+  @include flex-align-justify(center, flex-end);
+}
+
+@mixin flex-align-center-justify-between {
+  @include flex-align-justify(center, space-between);
+}
+
+@mixin flex-align-end-justify-start {
+  @include flex-align-justify(flex-end, flex-start);
+}
+
+@mixin flex-align-end-justify-center {
+  @include flex-align-justify(flex-end, center);
+}
+
+@mixin flex-align-end-justify-end {
+  @include flex-align-justify(flex-end, flex-end);
+}
+
+@mixin flex-align-end-justify-between {
+  @include flex-align-justify(flex-end, space-between);
+}
+
+@mixin outfit-font {
+  font-family: "Outfit", Inter, sans-serif, "Helvetica Neue", Arial;
+}
+
+@mixin text-style($weight, $size) {
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-size: map-get($font-size, $size);
+  line-height: $base-line-height;
+  font-weight: $weight;
+}
+
+@mixin text-bold-xxl {
+  @include text-style(700, xxl);
+}
+@mixin text-bold-xl {
+  @include text-style(700, xl);
+}
+@mixin text-bold-lg {
+  @include text-style(700, lg);
+}
+@mixin text-bold-md {
+  @include text-style(700, md);
+}
+@mixin text-bold-sm {
+  @include text-style(700, sm);
+}
+@mixin text-bold-xs {
+  @include text-style(700, xs);
+}
+
+@mixin text-semi-bold-xxl {
+  @include text-style(600, xxl);
+}
+@mixin text-semi-bold-xl {
+  @include text-style(600, xl);
+}
+@mixin text-semi-bold-lg {
+  @include text-style(600, lg);
+}
+@mixin text-semi-bold-md {
+  @include text-style(600, md);
+}
+@mixin text-semi-bold-sm {
+  @include text-style(600, sm);
+}
+@mixin text-semi-bold-xs {
+  @include text-style(600, xs);
+}
+
+@mixin text-medium-xxl {
+  @include text-style(500, xxl);
+}
+@mixin text-medium-xl {
+  @include text-style(500, xl);
+}
+@mixin text-medium-lg {
+  @include text-style(500, lg);
+}
+@mixin text-medium-md {
+  @include text-style(500, md);
+}
+@mixin text-medium-sm {
+  @include text-style(500, sm);
+}
+@mixin text-medium-xs {
+  @include text-style(500, xs);
+}
+
+@mixin text-regular-xxl {
+  @include text-style(400, xxl);
+}
+@mixin text-regular-xl {
+  @include text-style(400, xl);
+}
+@mixin text-regular-lg {
+  @include text-style(400, lg);
+}
+@mixin text-regular-md {
+  @include text-style(400, md);
+}
+@mixin text-regular-sm {
+  @include text-style(400, sm);
+}
+@mixin text-regular-xs {
+  @include text-style(400, xs);
+}
+
+@mixin container {
+  flex: 1;
+  height: 100%;
+  padding: 2rem;
+}
+
+@mixin button-sizes {
+  &--sm {
+    padding: 6px 20px;
+    @include text-regular-xs;
+  }
+
+  &--md {
+    padding: 8px 20px;
+    @include text-medium-sm;
+  }
+
+  &--lg {
+    padding: 6px 20px;
+    @include text-medium-md;
+  }
+}
+
+@mixin button-round-sizes {
+  &--sm {
+    height: 32px;
+    width: 32px;
+
+    img {
+      height: 16px;
+      width: 16px;
+    }
+  }
+
+  &--md {
+    height: 38px;
+    width: 38px;
+
+    img {
+      height: 18px;
+      width: 18px;
+    }
+  }
+
+  &--lg {
+    height: 44px;
+    width: 44px;
+
+    img {
+      height: 20px;
+      width: 20px;
+    }
+  }
+}
+
+@mixin button-color($text-color, $bg-color, $border-color, $hover-color) {
+  color: $text-color;
+  background-color: $bg-color;
+  border: 1px solid $border-color;
+
+  &:hover {
+    background-color: $hover-color;
+    border: 1px solid $hover-color;
+  }
+}
+
+@mixin clickable-heading {
+  gap: 1.2rem;
+  width: 100%;
+  border-radius: 0.6rem;
+  padding: 0.6rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $grey-50;
+  }
+}
+
+@mixin full-size {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin input-default-style {
+  width: 100%;
+  border: 1px solid $grey-100;
+  border-radius: 0.6rem;
+}
+
+@mixin task-status-states {
+  button {
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.5rem;
+  }
+  @each $name, $colors in $label-colors {
+    .#{$name} {
+      background-color: map-get($colors, bg);
+      color: map-get($colors, text);
+    }
+  }
+}
+
+@mixin make-square($size) {
+  width: $size;
+  height: $size;
+}

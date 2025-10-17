@@ -1,0 +1,15 @@
+@import "../abstracts/index";
+
+.logo {
+  @include flex-align-center-justify-start;
+
+  label {
+    @include text-regular-lg;
+  }
+
+  img {
+    height: 32px;
+    width: 32px;
+    margin-right: 1.6rem;
+  }
+}
