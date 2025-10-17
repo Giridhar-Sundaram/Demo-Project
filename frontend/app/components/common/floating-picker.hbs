@@ -1,0 +1,13 @@
+<div class="floating-picker" {{on "click" this.openPicker}}>
+  <button type="button" {{on "click" this.openPicker}}>
+    <img src={{@icon}} />
+  </button>
+  <div
+    class="floating-picker__container"
+    {{setup-offsets this.receiveOffsetFromModifier}}
+    {{set-position this.pickerPosition}}
+    {{click-outside this.closePicker}}
+  >
+    {{yield this.closePicker}}
+  </div>
+</div>

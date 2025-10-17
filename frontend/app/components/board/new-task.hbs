@@ -1,0 +1,37 @@
+<div class="new-task">
+
+  <textarea
+    class="new-task__textarea"
+    rows="2"
+    maxlength="255"
+    placeholder="Enter Task here"
+    value={{this.taskName}}
+    {{on "input" this.updateTaskName}}
+    {{auto-focus}}
+  >
+  </textarea>
+
+  <div class="new-task__details">
+
+    <div class="new-task__details__controls">
+      <Common::Picker::PriorityPicker
+        @selectedPriority={{this.taskPriority}}
+        @onSelectionOfPriority={{this.selectTaskPriority}}
+      />
+      <Common::Picker::DatePicker
+        @selectedDate={{this.taskDueDate}}
+        @onSelectionOfDate={{this.selectTaskDueDate}}
+      />
+
+    </div>
+    <div>
+      <button class="submit" type="button" {{on "click" this.close}}>
+        <img src="/assets/icons/fi-rr-cross-small.svg" />
+      </button>
+      <button class="submit" type="button" {{on "click" this.createNewTask}}>
+        <img src="/assets/icons/check-small.svg" />
+      </button>
+    </div>
+  </div>
+
+</div>

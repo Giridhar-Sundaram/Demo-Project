@@ -1,0 +1,13 @@
+<Common::FloatingPicker @icon={{this.pickerIcon}} as |closePickerAction|>
+  <div class="dropdown">
+    {{#each this.visiblePriorityList as |priority|}}
+      <button
+        class="dropdown__content"
+        {{on "click" (fn this.selectPriority priority closePickerAction)}}
+      >
+        <img src={{concat "/assets/icons/task-priority-" priority ".svg"}} />
+        <span>{{priority}}</span>
+      </button>
+    {{/each}}
+  </div>
+</Common::FloatingPicker>

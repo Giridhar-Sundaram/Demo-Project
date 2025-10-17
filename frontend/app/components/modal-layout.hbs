@@ -1,0 +1,7 @@
+{{#if this.portal}}
+  {{#in-element this.portal}}
+    <div class="modal" {{on "click" @closeModal}}>
+      {{yield}}
+    </div>
+  {{/in-element}}
+{{/if}}

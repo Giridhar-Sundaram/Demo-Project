@@ -1,0 +1,36 @@
+{{#if this.edit}}
+  <div class="editable-textarea">
+    <textarea
+      class={{concat "new-task__textarea " @type}}
+      rows="1"
+      maxlength="255"
+      placeholder="Enter Task here"
+      value={{this.content}}
+      autofocus="autofocus"
+      {{on "input" this.changeContent}}
+      {{on "input" this.autoGrowTextarea}}
+      {{on "focus" this.autoGrowTextarea}}
+      {{auto-focus}}
+    >
+    </textarea>
+    <ul class="editable-textarea__controls">
+      <li {{on "click" this.cancelEdit}}>
+        <img src="/assets/icons/fi-rr-cross-small.svg" />
+      </li>
+      <li {{on "click" this.submitEdit}}>
+        <img src="/assets/icons/check-small.svg" />
+      </li>
+    </ul>
+  </div>
+{{else}}
+  {{#if this.isTypeHeader}}
+    <h3 {{on "click" this.flipEdit}}>{{this.content}}</h3>
+  {{else if this.content}}
+    <div {{on "click" this.flipEdit}}>{{this.content}}</div>
+  {{else}}
+    <div class="editable-textarea__placeholder" {{on "click" this.flipEdit}}>Add
+      Content Here...
+    </div>
+
+  {{/if}}
+{{/if}}

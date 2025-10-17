@@ -1,0 +1,177 @@
+<ModalLayout @closeModal={{@closeModal}}>
+  <div class="edit-task">
+    <div class="edit-task__header">
+      <div>
+        <img src="/assets/icons/sub-task.svg" alt="task-icon" />
+        <span>{{concat this.projectKey " - " this.taskId}}</span>
+      </div>
+      <div>
+        <button
+          class="btn--primary btn--primary--white"
+          type="button"
+          {{on "click" this.deleteTask}}
+        >
+          <img src="/assets/icons/DeleteOutlined.svg" />
+        </button>
+        <button class="btn--primary btn--primary--white" type="button">
+          <img src="/assets/icons/fi-rr-share.svg" />
+        </button>
+        <button class="btn--primary btn--primary--white" type="button">
+          <img src="/assets/icons/fi-rr-menu-dots.svg" />
+        </button>
+        <button
+          class="btn--primary btn--primary--white"
+          type="button"
+          {{on "click" @closeModal}}
+        >
+          <img src="/assets/icons/fi-rr-cross-small.svg" />
+        </button>
+      </div>
+    </div>
+
+    <div class="edit-task__content">
+      <div class="edit-task__left-section">
+        <Common::Text::EditableTextarea
+          @content={{this.taskName}}
+          @editContent={{this.editTaskName}}
+          @type="header"
+        />
+        <div class="btn-group">
+          <button class="btn--primary btn--primary--grey" type="button">
+            <img src="/assets/icons/fi-rr-clip.svg" />
+            Attach
+          </button>
+          <button class="btn--primary btn--primary--grey" type="button">
+            <img src="/assets/icons/fi-rr-share.svg" />
+            Link
+          </button>
+          <button class="btn--primary btn--primary--grey no-text" type="button">
+            <img src="/assets/icons/fi-rr-menu-dots.svg" />
+          </button>
+        </div>
+
+        <div class="edit-task__description">
+          <h4>Description</h4>
+          <Common::Text::EditableTextarea
+            @content={{this.taskDescription}}
+            @editContent={{this.editTaskDescription}}
+            @type="text"
+          />
+        </div>
+
+        <div class="edit-task__attachments">
+          <h4>Attachments</h4>
+          <div class="images-grid">
+            {{#each this.taskAttachments as |attachment|}}
+              <img src={{attachment.document_url}} />
+            {{/each}}
+          </div>
+        </div>
+
+        <div class="edit-task__comments">
+          <h4>Comments</h4>
+          <div class="edit-task__comments__new">
+            <div class="profile-image">
+              <img src={{this.getUserProfileUrl}} />
+            </div>
+            <div class="add-comment">
+              <textarea
+                class="textarea"
+                rows="1"
+                maxlength="255"
+                placeholder="Add a comment... "
+                value={{this.userComment}}
+                {{on "input" this.updateTaskName}}
+                {{auto-focus}}
+              >
+              </textarea>
+              <span><strong>Pro tip : </strong>
+                press
+                <strong>M</strong>
+                to comment</span>
+            </div>
+          </div>
+
+          {{#each this.taskComments as |comment|}}
+            <Common::Comment @comment={{comment}} />
+          {{/each}}
+        </div>
+      </div>
+      <div class="edit-task__right-section">
+        <button class={{this.taskStatus}} type="button">{{this.taskStatus}}
+          <img src="/assets/icons/fi-rr-angle-small-down.svg" />
+        </button>
+
+        <div class="accordian">
+          <div class="accordian__header border-bottom">
+            Details
+            <div class="btn-group">
+              <img
+                src="/assets/icons/fi-rr-angle-small-down.svg"
+                class="dropdown"
+              />
+            </div>
+          </div>
+          <div class="accordian__body">
+            <div class="edit-task__task-details">
+              <div class="label">Assignee</div>
+              <div class="value">
+                <img
+                  src={{concat
+                    "https://api.dicebear.com/9.x/initials/svg?radius=50&size=24&seed="
+                    this.taskAssignee
+                  }}
+                />
+                <span>{{this.taskAssignee}}</span>
+              </div>
+            </div>
+            <div class="edit-task__task-details">
+              <div class="label">Priority</div>
+              <div class="value">
+                {{!-- <Common::Picker::PriorityPicker
+                  @selectedPriority={{this.taskPriority}}
+                  @onSelectionOfPriority={{this.onSelectionOfPriority}}
+                /> --}}
+                <img
+                  class="priority-image"
+                  src={{concat
+                    "/assets/icons/task-priority-"
+                    this.taskPriority
+                  }}
+                />
+                <span>{{this.taskPriority}}</span>
+              </div>
+            </div>
+            <div class="edit-task__task-details">
+              <div class="label">Due Date</div>
+              <div class="value">
+                {{!-- <Common::Picker::DatePicker
+                  @selectedDate={{this.taskDueDate}}
+                  @onSelectionOfDate={{this.selectTaskDueDate}}
+                /> --}}
+                <img
+                  class="priority-image"
+                  src={{concat "/assets/icons/fi-rr-calendar.svg"}}
+                />
+                <span>{{this.taskDueDate}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="edit-task__task-configuration">
+          <div class="time">
+            <span>
+              Created
+              {{moment-from-now "2025-10-15T12:00:12.225Z"}}
+            </span>
+            <span>
+              Updated
+              {{moment-from-now "2025-10-15T12:00:12.225Z"}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ModalLayout>

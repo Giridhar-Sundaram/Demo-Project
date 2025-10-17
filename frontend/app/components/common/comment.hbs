@@ -1,0 +1,14 @@
+<div class="comment">
+  <div class="comment__profile">
+    <img
+      src={{concat
+        "https://api.dicebear.com/9.x/initials/svg?radius=50&size=24&seed="
+        @comment.author.user_name
+      }}
+    />
+    <span>{{@comment.author.user_name}}</span>
+  </div>
+  <div class="comment__text">
+    {{@comment.text}}
+  </div>
+</div>

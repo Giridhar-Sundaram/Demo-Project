@@ -1,0 +1,46 @@
+<div class="board__contents--status">
+  <div class="header">
+    <img
+      src="http://localhost:3000/assets/icons/menu-dialpad.svg"
+      alt="placeholder for dialpad"
+    />
+    <button class={{@statusClass}} type="button">{{@statusLabel}}</button>
+    <span>{{@tasks.length}}</span>
+  </div>
+  {{#if (and @isDragging (not @isDraggingTypeSame))}}
+    <div
+      class="drop-content {{if this.isDragOver 'drag-over'}}"
+      {{on "dragover" this.handleOnDragOver}}
+      {{on "dragleave" this.handleOnDragLeave}}
+      {{on "drop" this.handleOnDrop}}
+    >
+      <span>Drop to set task as {{@statusLabel}}</span>
+    </div>
+  {{else}}
+    <div class="tasks">
+      {{#each @tasks as |task|}}
+        <Board::DraggableTask
+          @task={{task}}
+          @statusClass={{@statusClass}}
+          @setIsDragging={{@setIsDragging}}
+        />
+      {{/each}}
+    </div>
+
+    {{#if this.addNewTask}}
+      <Board::NewTask
+        @statusClass={{@statusClass}}
+        @flipAddNewTask={{this.flipAddNewTask}}
+      />
+    {{else}}
+      <button class="footer" type="button" {{on "click" this.flipAddNewTask}}>
+        <img
+          src="http://localhost:3000/assets/icons/add.svg"
+          alt="add new tasks"
+        />
+        <span>Create</span>
+      </button>
+    {{/if}}
+  {{/if}}
+
+</div>

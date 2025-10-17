@@ -1,0 +1,42 @@
+<div class="board">
+  <div class="board__header">
+    <div class="board__header--section">
+      <div class="input-field__search">
+        <label class="input-field__label" for="search-project-board">
+          Search project board
+        </label>
+        <input
+          id="search-project-board"
+          type="text"
+          placeholder="Search Board"
+          value={{this.searchBoard}}
+          {{on "input" this.handleSearchInput}}
+        />
+        <img
+          src="/assets/icons/fi-rr-cross-small.svg"
+          {{on "click" this.clearSearchInput}}
+        />
+      </div>
+      {{!-- <div class="collaborators">
+        {{#each this.topFourCollaborators as |collaborator|}}
+          <img
+            src={{concat
+              "https://api.dicebear.com/9.x/initials/svg?radius=50&size=24&seed="
+              collaborator
+            }}
+            alt={{collaborator}}
+          />
+        {{/each}}
+        <img
+          src="/assets/icons/fi-rr-user-add.svg"
+          alt="user-1"
+          class="new-user"
+        />
+      </div> --}}
+    </div>
+  </div>
+
+  <div class="board__contents" id="board-contents">
+    {{yield this.searchBoard}}
+  </div>
+</div>

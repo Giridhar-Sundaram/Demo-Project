@@ -1,0 +1,21 @@
+{{page-title "Attachment"}}
+<div class="document-gallery">
+  {{#each this.projectAttachments as |attachment|}}
+    <div class="document-gallery__item">
+      <img
+        src={{attachment.document_url}}
+        alt={{attachment.name}}
+        class="document-gallery__thumbnail"
+      />
+      <div class="document-gallery__title">
+        {{attachment.name}}
+        <div>
+          <img src="http://localhost:3000/assets/icons/sub-task.svg" />
+          <strong>{{concat attachment.project " - " attachment.taskId}}
+          </strong>
+          {{attachment.taskName}}
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>

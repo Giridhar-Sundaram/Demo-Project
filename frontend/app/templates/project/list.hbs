@@ -1,0 +1,92 @@
+{{page-title "List"}}
+<table class="table">
+  <colgroup>
+    <col style="width: 10%;" />
+    <col style="width: 10%;" />
+    <col style="width: 10%;" />
+    <col style="width: 40%;" />
+    {{! Name column set to 40% }}
+    <col style="width: 20%;" />
+    <col style="width: 20%;" />
+    <col style="width: 20%;" />
+    <col style="width: 20%;" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th><input type="checkbox" /></th>
+      <th>Priority</th>
+      <th>Key</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Category</th>
+      <th>Assignee</th>
+      <th>Due Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each this.tasks as |task|}}
+      <tr>
+        <td><input type="checkbox" /></td>
+        <td>
+          <div class="cell-content">
+            <img
+              src={{concat
+                "/assets/icons/task-priority-"
+                task.task_priority
+                ".svg"
+              }}
+              alt="Task Priority"
+            />
+          </div>
+        </td>
+        <td><div class="cell-content">{{concat
+              this.projectKey
+              " -"
+              task.id
+            }}</div></td>
+        <td><div class="cell-content">{{task.task_name}}</div></td>
+        <td>
+          <div class="cell-content">
+            <button
+              class={{task.task_status}}
+              type="button"
+            >{{task.task_status}}</button>
+          </div>
+        </td>
+        <td>
+          <div class="cell-content">
+            {{#each task.tags as |tag|}}
+              <button
+                class={{tag.tag_name}}
+                type="button"
+              >{{tag.tag_name}}</button>
+            {{/each}}
+          </div>
+        </td>
+        <td>
+          <div class="cell-content">
+            <img
+              src={{concat
+                "https://api.dicebear.com/9.x/initials/svg?radius=50&size=24&seed="
+                task.assignee.user_name
+              }}
+              alt={{task.assignee.user_name}}
+            />
+            <span>{{task.assignee.user_name}}</span>
+          </div>
+        </td>
+        <td>
+          <div class="cell-content">
+            <button class="todo" type="button">{{task.task_dueDate}}</button>
+          </div>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <td colspan="8">Total Rows: 10</td>
+    </tr>
+  </tfoot>
+</table>

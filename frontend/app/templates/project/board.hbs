@@ -1,0 +1,30 @@
+{{page-title "Board"}}
+
+<Board::StatusColumn
+  @statusLabel="To Do"
+  @statusClass={{this.todoStatusKey}}
+  @tasks={{this.todoTasks}}
+  @isDragging={{this.isDragging}}
+  @isDraggingTypeSame={{this.isDraggingTaskStatusTodo}}
+  @setIsDragging={{this.setIsDragging}}
+  @changeTaskStatus={{this.changeTaskStatus}}
+/>
+<Board::StatusColumn
+  @statusLabel="In Progress"
+  @statusClass={{this.inprogressStatusKey}}
+  @tasks={{this.inprogressTasks}}
+  @isDragging={{this.isDragging}}
+  @isDraggingTypeSame={{this.isDraggingTaskStatusInProgress}}
+  @setIsDragging={{this.setIsDragging}}
+  @changeTaskStatus={{this.changeTaskStatus}}
+/>
+<Board::StatusColumn
+  @statusLabel="Done"
+  @statusClass={{this.doneStatusKey}}
+  @tasks={{this.doneTasks}}
+  @isDragging={{this.isDragging}}
+  @isDraggingTypeSame={{this.isDraggingTaskStatusDone}}
+  @setIsDragging={{this.setIsDragging}}
+  @changeTaskStatus={{this.changeTaskStatus}}
+/>
+{{outlet}}

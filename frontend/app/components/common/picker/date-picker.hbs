@@ -1,0 +1,17 @@
+{{! app/components/my-date-selector.hbs }}
+
+<Common::FloatingPicker
+  @icon="/assets/icons/fi-rr-calendar.svg"
+  as |closePickerAction|
+>
+  <PowerCalendar
+    @center={{@selectedDate}}
+    @selected={{@selectedDate}}
+    @onSelect={{fn this.onSelectionOfDate closePickerAction}}
+    @onCenterChange={{this.onCenterChange}}
+    as |calendar|
+  >
+    <calendar.Nav />
+    <calendar.Days />
+  </PowerCalendar>
+</Common::FloatingPicker>
