@@ -52,15 +52,27 @@
   }
 }
 
-.new-task {
+.add-task {
   @extend .task;
 
   &__details {
     @include flex-align-center-justify-between;
     width: 100%;
 
-    &__controls {
+    &-controls {
       @include flex-align-start-justify-start;
+      flex: 1;
+      gap: 0.4rem;
+
+      .floating-picker {
+        width: fit-content;
+      }
+    }
+
+    &-submit {
+      @include flex-align-start-justify-end;
+      flex: 1;
+      gap: 0.4rem;
     }
 
     button {
@@ -144,6 +156,10 @@
     flex: 4;
     height: 100%;
 
+    .status-dropdown {
+      width: fit-content;
+    }
+
     @include task-status-states;
 
     button {
@@ -221,8 +237,14 @@
 
     .value {
       @include flex-align-center-justify-start;
+      padding: 0.4rem;
+      border-radius: 0.4rem;
       gap: 10px;
       flex: 5;
+
+      &:hover {
+        background-color: $grey-100;
+      }
     }
 
     img {
@@ -251,5 +273,87 @@
 
   .priority-imag {
     width: 18px;
+  }
+}
+
+.new-task {
+  @include flex-align-end-justify-end;
+  flex-direction: column;
+  height: 80%;
+  width: 50%;
+  background-color: $white;
+  border-radius: 0.8rem;
+  padding: 2rem;
+  @include outfit-font;
+
+  &__header {
+    @include flex-align-center-justify-between;
+    @include text-medium-xs;
+    width: 100%;
+    color: $secondary-700;
+
+    div {
+      @include flex-align-center-justify-center;
+      gap: 8px;
+    }
+
+    button {
+      @include make-square(32px);
+    }
+    img {
+      @include make-square(18px);
+    }
+  }
+
+  &__dropdown {
+    @include flex-align-center-justify-start;
+    @include text-medium-xs;
+    width: 100%;
+    gap: 1rem;
+    border: 1px solid $grey-100;
+    padding: 0.8rem 1rem;
+
+    img {
+      @include make-square(18px);
+    }
+
+    span {
+      // width: 24rem;
+      flex: 1;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  &__submit {
+    @include flex-align-center-justify-end;
+    gap: 1rem;
+    padding-top: 1rem;
+  }
+
+  .floating-picker {
+    width: 40%;
+  }
+
+  .floating-picker {
+    width: 50%;
+  }
+
+  section {
+    flex: 1;
+    width: 100%;
+    margin: 10px 0px;
+    overflow: auto;
+  }
+
+  textarea {
+    border: 1px solid $grey-100;
+    padding: 0.8rem 1rem;
+    width: 50%;
+
+    &.task-description {
+      width: 80%;
+    }
   }
 }

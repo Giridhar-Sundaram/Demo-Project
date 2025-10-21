@@ -14,23 +14,9 @@ export default class BoardDraggableTask extends Component {
     }
   }
 
-  get isModalOpen() {
-    return (
-      this.projectDataService.isEditModalOpen &&
-      this.args.task.id === this.projectDataService.modalOpenForTaskId
-    );
-  }
-
   @action
   openModal() {
-    const taskId = this.args.task.id;
-    this.projectDataService.openEditModal(taskId);
-  }
-
-  @action
-  closeModal() {
-    console.log('clicked');
-    this.projectDataService.closeEditModal();
+    this.projectDataService.openEditModal(this.args.task);
   }
 
   @action

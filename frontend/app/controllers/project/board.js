@@ -13,6 +13,7 @@ export default class ProjectBoardController extends Controller {
   // These are required to make template-reactivity work
   @tracked collaborators = [];
   @tracked projectId = null;
+  @tracked searchBoard = '';
 
   filterTaskByName(task) {
     const searchTerm = this.searchBoard.toLowerCase();
@@ -21,8 +22,12 @@ export default class ProjectBoardController extends Controller {
     return searchTerm === '' || taskName.includes(searchTerm);
   }
 
+  get isModalOpen() {
+    return this.projectDataService.isEditModalOpen;
+  }
+
   get tasks() {
-    return this.projectDataService.projectTasks;
+    return this.projectDataService.projectTasksList;
   }
 
   get todoStatusKey() {

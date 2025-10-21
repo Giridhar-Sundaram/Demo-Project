@@ -60,7 +60,8 @@
 }
 
 @mixin text-style($weight, $size) {
-  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  // font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Outfit", Inter, sans-serif, "Helvetica Neue", Arial;
   font-size: map-get($font-size, $size);
   line-height: $base-line-height;
   font-weight: $weight;
@@ -151,17 +152,17 @@
 @mixin button-sizes {
   &--sm {
     padding: 6px 20px;
-    @include text-regular-xs;
+    @include text-bold-xs;
   }
 
   &--md {
     padding: 8px 20px;
-    @include text-medium-sm;
+    @include text-bold-sm;
   }
 
   &--lg {
     padding: 6px 20px;
-    @include text-medium-md;
+    @include text-bold-md;
   }
 }
 
@@ -232,14 +233,16 @@
 }
 
 @mixin task-status-states {
-  button {
-    padding: 0.2rem 0.6rem;
-    border-radius: 0.5rem;
-  }
   @each $name, $colors in $label-colors {
     .#{$name} {
+      @include flex-align-center-justify-center;
+      @include text-medium-sm;
+      gap: 8px;
+      padding: 0.4rem 0.6rem;
+      border-radius: 0.2rem;
       background-color: map-get($colors, bg);
       color: map-get($colors, text);
+      width: fit-content !important;
     }
   }
 }

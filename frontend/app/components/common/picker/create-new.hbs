@@ -1,0 +1,16 @@
+<div class="floating-picker" {{on "click" this.flipOpen}}>
+  {{yield}}
+  <Common::FloatingPicker @open={{this.open}} as |closePickerAction|>
+    <div class="dropdown">
+      <div
+        class="dropdown__content"
+        {{on "click" (fn this.selected "project")}}
+      >
+        Project
+      </div>
+      <div class="dropdown__content" {{on "click" (fn this.selected "task")}}>
+        Task
+      </div>
+    </div>
+  </Common::FloatingPicker>
+</div>

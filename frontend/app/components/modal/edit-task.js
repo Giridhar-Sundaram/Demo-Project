@@ -3,105 +3,138 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
 
-export default class MyPortalComponent extends Component {
-  portal = null;
+export default class EditTaskModal extends Component {
+  @service projectDataService;
+  @service taskPersistanceService;
 
   @tracked userComment = '';
 
-  @service projectDataService;
-
-  // constructor() {
-  //   super(...arguments);
-
-  //   this.portal = document.getElementById('portal');
-  //   this.portal.style.display = 'block';
-  // }
+  get task() {
+    return this.projectDataService.modalOpenForTask;
+  }
 
   get projectKey() {
     return this.projectDataService.projectKey;
   }
 
   get taskId() {
-    return this.args.task.id;
+    return this.task.id;
   }
 
   get taskName() {
-    return this.args.task.task_name;
+    return this.task.task_name;
   }
 
   get taskDescription() {
-    return this.args.task.task_description;
+    return this.task.task_description;
   }
 
   get taskAttachments() {
-    return this.args.task.attachments;
+    return this.task.attachments;
   }
 
   get taskComments() {
-    return this.args.task.comments;
+    return this.task.comments;
   }
 
   get taskAssignee() {
-    return this.args.task.assignee.user_name;
+    return this.task.assignee;
+  }
+
+  get taskAssigneeName() {
+    return this.task.assignee.user_name;
+  }
+
+  get taskAssigneeId() {
+    return this.task.assignee.id;
   }
 
   get taskPriority() {
-    return this.args.task.task_priority;
+    return this.task.task_priority;
+  }
+
+  get taskStatus() {
+    return this.task.task_status;
+  }
+
+  get taskDueDate() {
+    return this.task.task_dueDate;
   }
 
   get getUserProfileUrl() {
     return 'https://api.dicebear.com/9.x/initials/svg?radius=50&size=24&seed=Felix';
   }
 
-  get taskStatus() {
-    return this.args.task.task_status;
-  }
-
-  get taskDueDate() {
-    return this.args.task.task_dueDate;
-  }
-
-  // @action
-  // stopBubbling(event) {
-  //   event.stopPropagation();
-  // }
-
   @action
-  closeModa() {
+  closeModal() {
     this.projectDataService.closeEditModal();
   }
 
   @action
   async editTaskName(taskName) {
     try {
-      const taskId = this.args.task.id;
-      this.projectDataService.updateTaskName(taskId, taskName);
-    } catch (e) {}
+      this.taskPersistanceService.updateTaskName(this.taskId, taskName);
+    } catch (exception) {
+      console.error(exception);
+    }
   }
 
   @action
   async editTaskDescription(taskDescription) {
     try {
-      const taskId = this.args.task.id;
-      this.projectDataService.updateTaskDescription(taskId, taskDescription);
-    } catch (e) {}
+      this.taskPersistanceService.updateTaskDescription(
+        this.taskId,
+        taskDescription,
+      );
+    } catch (exception) {
+      console.error(exception);
+    }
+  }
+
+  @action
+  async editTaskStatus(taskStatus) {
+    try {
+      this.taskPersistanceService.updateTaskStatus(this.taskId, taskStatus);
+    } catch (exception) {
+      console.error(exception);
+    }
+  }
+
+  @action
+  async editTaskPriority(taskPriority) {
+    try {
+      this.taskPersistanceService.updateTaskPriority(this.taskId, taskPriority);
+    } catch (exception) {
+      console.error(exception);
+    }
+  }
+
+  @action
+  async editTaskAssignee(taskAssignee) {
+    try {
+      this.taskPersistanceService.updateTaskAssignee(this.taskId, taskAssignee);
+    } catch (exception) {}
+  }
+
+  @action
+  async editTaskDueDate(taskDueDate) {
+    try {
+      this.taskPersistanceService.updateTaskDueDate(this.taskId, taskDueDate);
+    } catch (exception) {
+      console.error(exception);
+    }
   }
 
   @action
   async deleteTask() {
     try {
-      const taskId = this.args.task.id;
-      const taskDeleted = await this.projectDataService.deleteTask(taskId);
+      const taskDeleted = await this.taskPersistanceService.deleteTask(
+        this.taskId,
+      );
 
-      if (taskDeleted) this.args.closeModal();
-    } catch (e) {}
+      if (taskDeleted) this.closeModal();
+    } catch (exception) {
+      console.error(exception);
+    }
   }
-
-  // willDestroy() {
-  //   super.willDestroy(...arguments);
-
-  //   if (this.portal) {
-  //     this.portal.style.display = 'none';
-  //   }
-  // }
 }

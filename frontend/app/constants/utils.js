@@ -4,23 +4,16 @@ export const getRootUrl = () => {
   return protocol + '//' + host;
 };
 
-export function isOutOfBounds(
-  offset,
-  parentElement,
-  childWidth = 200,
-  childHeight = 200,
-) {
-  const parentRect = parentElement.getBoundingClientRect();
-
-  // Check if element's left + child's width > parent's width
-  const goesOutRight = offset.left + childWidth > parentRect.width;
-
-  // Check if element's top + child's height > parent's height
-  const goesOutBottom = offset.top + childHeight > parentRect.height;
-
-  // Check if element is positioned with negative offset (going out on top or left)
+export function isOutOfBounds(offset) {
+  const body = document.getElementById('ember-body');
+  const bodyRect = body.getBoundingClientRect();
+  const goesOutRight = offset.left + offset.width > bodyRect.width;
+  const goesOutBottom = offset.top + offset.height > bodyRect.height;
   const goesOutLeft = offset.left < 0;
   const goesOutTop = offset.top < 0;
+
+  const deviationRight = offset.left + offset.width - bodyRect.width;
+  const deviationTop = offset.top + offset.height - bodyRect.height;
 
   return {
     goesOutRight,
@@ -28,5 +21,7 @@ export function isOutOfBounds(
     goesOutLeft,
     goesOutTop,
     isOutOfBounds: goesOutRight || goesOutBottom || goesOutLeft || goesOutTop,
+    deviationRight,
+    deviationTop,
   };
 }

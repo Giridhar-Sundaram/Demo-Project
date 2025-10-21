@@ -1,18 +1,19 @@
 import { modifier } from 'ember-modifier';
+import { TOP_OFFSET, LEFT_OFFSET } from 'frontend/constants/offsets';
 
 export default modifier(function setupOffsets(element, [onOffset]) {
   try {
-    const board = document.getElementById('ember-body');
+    const body = document.getElementById('ember-body');
 
-    if (!board || !calendarElement) {
+    if (!body || !element) {
       console.warn('Elements not found!');
       return;
     }
 
-    const offset = getOffsetRelativeTo(calendarElement, board);
+    const offset = getOffsetRelativeTo(element, body);
 
     if (typeof onOffset === 'function') {
-      onOffset(offset); // Send offset back to component
+      onOffset(offset);
     }
   } catch (e) {
     console.error(e);
@@ -27,10 +28,10 @@ function getOffsetRelativeTo(element, relativeToElement) {
   const relativeRect = relativeToElement.getBoundingClientRect();
 
   return {
-    top: elementRect.top - relativeRect.top,
-    left: elementRect.left - relativeRect.left,
-    bottom: elementRect.bottom - relativeRect.top,
-    right: elementRect.right - relativeRect.left,
+    top: elementRect.top - relativeRect.top + TOP_OFFSET,
+    left: elementRect.left - relativeRect.left + LEFT_OFFSET,
+    bottom: elementRect.bottom - relativeRect.top + TOP_OFFSET,
+    right: elementRect.right - relativeRect.left + LEFT_OFFSET,
     width: elementRect.width,
     height: elementRect.height,
   };

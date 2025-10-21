@@ -31,6 +31,7 @@
     "@babel/eslint-parser": "^7.28.4",
     "@babel/plugin-proposal-decorators": "^7.28.0",
     "@ember/optional-features": "^2.2.0",
+    "@ember/render-modifiers": "^3.0.0",
     "@ember/test-helpers": "^5.2.2",
     "@embroider/macros": "^1.18.1",
     "@eslint/js": "^9.35.0",
@@ -43,6 +44,7 @@
     "ember-cli": "~6.7.0",
     "ember-cli-app-version": "^7.0.0",
     "ember-cli-babel": "^8.2.0",
+    "ember-cli-chart": "^3.7.2",
     "ember-cli-clean-css": "^3.0.0",
     "ember-cli-dependency-checker": "^3.3.3",
     "ember-cli-deprecation-workflow": "^3.4.0",
@@ -65,6 +67,7 @@
     "ember-source": "~6.7.0",
     "ember-template-imports": "^4.3.0",
     "ember-template-lint": "^6.1.0",
+    "ember-tippy": "^2.0.0",
     "ember-truth-helpers": "^5.0.0",
     "ember-welcome-page": "^7.0.2",
     "eslint": "^9.35.0",
@@ -81,6 +84,7 @@
     "sass": "^1.93.2",
     "stylelint": "^16.23.1",
     "stylelint-config-standard": "^36.0.1",
+    "tippy.js": "^6.3.7",
     "tracked-built-ins": "^3.4.0",
     "webpack": "^5.101.3"
   },
@@ -91,6 +95,8 @@
     "edition": "octane"
   },
   "dependencies": {
+    "color-thief-browser": "^2.0.2",
+    "colorthief": "^2.6.0",
     "moment": "^2.30.1"
   }
 }

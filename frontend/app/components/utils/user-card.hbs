@@ -1,0 +1,9 @@
+<div class="{{if this.selected 'selected'}}" {{on "click" this.flipSelected}}>
+  <img
+    src={{concat
+      "https://api.dicebear.com/9.x/initials/svg?radius=50&size=24&seed="
+      @user.user_name
+    }}
+  />
+  {{@user.user_name}}
+</div>

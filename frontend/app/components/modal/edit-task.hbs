@@ -1,5 +1,5 @@
-<ModalLayout @closeModal={{@closeModal}}>
-  <div class="edit-task">
+<ModalLayout @closeModal={{this.closeModal}}>
+  <div class="edit-task" {{click-stop-propagation}}>
     <div class="edit-task__header">
       <div>
         <img src="/assets/icons/sub-task.svg" alt="task-icon" />
@@ -22,7 +22,7 @@
         <button
           class="btn--primary btn--primary--white"
           type="button"
-          {{on "click" @closeModal}}
+          {{on "click" this.closeModal}}
         >
           <img src="/assets/icons/fi-rr-cross-small.svg" />
         </button>
@@ -35,6 +35,7 @@
           @content={{this.taskName}}
           @editContent={{this.editTaskName}}
           @type="header"
+          @maxlength={{255}}
         />
         <div class="btn-group">
           <button class="btn--primary btn--primary--grey" type="button">
@@ -81,8 +82,9 @@
                 maxlength="255"
                 placeholder="Add a comment... "
                 value={{this.userComment}}
-                {{on "input" this.updateTaskName}}
+                {{on "input" this.editTaskName}}
                 {{auto-focus}}
+                {{auto-grow-height}}
               >
               </textarea>
               <span><strong>Pro tip : </strong>
@@ -98,9 +100,18 @@
         </div>
       </div>
       <div class="edit-task__right-section">
-        <button class={{this.taskStatus}} type="button">{{this.taskStatus}}
-          <img src="/assets/icons/fi-rr-angle-small-down.svg" />
-        </button>
+        <Common::Picker::StatusPicker
+          @selectedStatus={{this.taskStatus}}
+          @onSelectionOfStatus={{this.editTaskStatus}}
+        >
+          <button
+            class={{concat this.taskStatus " status-dropdown"}}
+            type="button"
+          >
+            {{this.taskStatus}}
+            <img src="/assets/icons/fi-rr-angle-small-down.svg" />
+          </button>
+        </Common::Picker::StatusPicker>
 
         <div class="accordian">
           <div class="accordian__header border-bottom">
@@ -116,44 +127,63 @@
             <div class="edit-task__task-details">
               <div class="label">Assignee</div>
               <div class="value">
-                <img
-                  src={{concat
-                    "https://api.dicebear.com/9.x/initials/svg?radius=50&size=24&seed="
-                    this.taskAssignee
-                  }}
-                />
-                <span>{{this.taskAssignee}}</span>
+                <Common::Picker::AssigneePicker
+                  @selectedAssignee={{this.taskAssignee}}
+                  @onSelectionOfAssignee={{this.editTaskAssignee}}
+                >
+                  <img
+                    src={{concat
+                      "https://api.dicebear.com/9.x/initials/svg?radius=50&size=24&seed="
+                      this.taskAssigneeName
+                    }}
+                  />
+                  <span>{{this.taskAssigneeName}}</span>
+                </Common::Picker::AssigneePicker>
               </div>
             </div>
             <div class="edit-task__task-details">
               <div class="label">Priority</div>
               <div class="value">
-                {{!-- <Common::Picker::PriorityPicker
+                <Common::Picker::PriorityPicker
                   @selectedPriority={{this.taskPriority}}
-                  @onSelectionOfPriority={{this.onSelectionOfPriority}}
-                /> --}}
-                <img
+                  @onSelectionOfPriority={{this.editTaskPriority}}
+                >
+                  <button>
+                    <img
+                      src={{concat
+                        "/assets/icons/task-priority-"
+                        this.taskPriority
+                        ".svg"
+                      }}
+                    />
+                  </button>
+                  <span>{{this.taskPriority}}</span>
+                </Common::Picker::PriorityPicker>
+                {{!-- <img
                   class="priority-image"
                   src={{concat
                     "/assets/icons/task-priority-"
                     this.taskPriority
                   }}
-                />
-                <span>{{this.taskPriority}}</span>
+                /> --}}
               </div>
             </div>
             <div class="edit-task__task-details">
               <div class="label">Due Date</div>
               <div class="value">
-                {{!-- <Common::Picker::DatePicker
+                <Common::Picker::DatePicker
                   @selectedDate={{this.taskDueDate}}
-                  @onSelectionOfDate={{this.selectTaskDueDate}}
-                /> --}}
-                <img
+                  @onSelectionOfDate={{this.editTaskDueDate}}
+                >
+                  <button>
+                    <img src="/assets/icons/fi-rr-calendar.svg" />
+                  </button>
+                  <span>{{this.taskDueDate}}</span>
+                </Common::Picker::DatePicker>
+                {{!-- <img
                   class="priority-image"
                   src={{concat "/assets/icons/fi-rr-calendar.svg"}}
-                />
-                <span>{{this.taskDueDate}}</span>
+                /> --}}
               </div>
             </div>
           </div>
@@ -163,11 +193,11 @@
           <div class="time">
             <span>
               Created
-              {{moment-from-now "2025-10-15T12:00:12.225Z"}}
+              {{moment-from-now this.task.created_at}}
             </span>
             <span>
               Updated
-              {{moment-from-now "2025-10-15T12:00:12.225Z"}}
+              {{moment-from-now this.task.updated_at}}
             </span>
           </div>
         </div>

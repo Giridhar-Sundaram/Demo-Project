@@ -4,64 +4,62 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { isOutOfBounds } from 'frontend/constants/utils';
+import { TOP_OFFSET, LEFT_OFFSET } from 'frontend/constants/offsets';
 
-const SPACING = 24;
-const PARENT_ID = {
-  ember: 'ember-body',
-  modal: 'portal',
-};
+const SPACING = 32;
 
 export default class FloatingPicker extends Component {
   @tracked offset = null;
   @tracked pickerPosition = {
-    top: 0,
-    left: 0,
+    top: -TOP_OFFSET,
+    left: -LEFT_OFFSET,
     display: 'none',
   };
 
   @action
+  openWatcher() {
+    if (this.args.open) this.openPicker();
+    else this.closePicker();
+  }
+  @action
   receiveOffsetFromModifier(offsetData) {
-    console.log(offsetData);
     this.offset = offsetData;
   }
 
   @action
   openPicker() {
-    const parentId = PARENT_ID[this.args.root];
-    const parent = document.getElementById('ember-body');
-
-    if (!this.offset || !parent) {
+    console.log('[running - open picker]');
+    if (!this.offset) {
       console.warn('Offset or parent element not found');
       return;
     }
 
     const outOfBounds = isOutOfBounds(
       this.offset,
-      parent,
       this.offset.width,
       this.offset.height,
     );
 
-    let updateTopPosition = SPACING;
-    let updateLeftPosition = 0;
+    let newTopPosition = SPACING;
+    let newLeftPosition = 0;
 
     if (outOfBounds.goesOutRight) {
-      updateLeftPosition = -(this.offset.width - SPACING);
+      console.log(outOfBounds.dr);
+      newLeftPosition = -(outOfBounds.deviationRight + SPACING);
     }
 
     if (outOfBounds.goesOutBottom) {
-      updateTopPosition = -this.offset.height;
+      newTopPosition = -this.offset.height;
     }
 
     this.pickerPosition = {
-      top: updateTopPosition,
-      left: updateLeftPosition,
-      display: 'block',
+      top: newTopPosition,
+      left: newLeftPosition,
     };
   }
 
   @action
   closePicker() {
-    this.pickerPosition = { top: 0, left: 0, display: 'none' };
+    this.pickerPosition = { top: -TOP_OFFSET, left: -LEFT_OFFSET };
   }
 }

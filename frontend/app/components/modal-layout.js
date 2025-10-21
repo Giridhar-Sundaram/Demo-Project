@@ -7,17 +7,23 @@ export default class ModalLayout extends Component {
     super(...arguments);
 
     this.portal = document.getElementById('portal');
-    this.portal.style.display = 'block';
+    this.portal.style.zIndex = 1000;
+    this.portal.style.opacity = 1;
   }
 
   willDestroy() {
     super.willDestroy(...arguments);
 
+    const closeModal = (portal) => {
+      portal.style.zIndex = -1000;
+      portal.style.opacity = 0;
+    };
+
     if (this.portal) {
-      this.portal.style.display = 'none';
+      closeModal(this.portal);
     } else {
       const portal = document.getElementById('portal');
-      portal.style.display = 'none';
+      closeModal(portal);
     }
   }
 }

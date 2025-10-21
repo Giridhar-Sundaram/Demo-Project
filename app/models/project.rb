@@ -8,6 +8,9 @@ class Project < ApplicationRecord
   has_many :collaborations, class_name: 'ProjectCollaborator', dependent: :destroy
   has_many :users, through: :collaborations
   has_many :tasks, dependent: :destroy
+  
+  accepts_nested_attributes_for :collaborations, 
+                                allow_destroy: true
 
   # ... validations
   def task_counts

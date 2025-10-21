@@ -5,13 +5,13 @@
   @include full-size;
   flex-direction: column;
   gap: 2rem;
-  overflow: auto;
+  padding: 30px 20px 50px 20px;
 
   &__header {
     @include flex-align-center-justify-start;
     width: 100%;
 
-    &--section {
+    &__section {
       @include flex-align-center-justify-center;
       gap: 20px;
     }
@@ -24,7 +24,9 @@
   &__contents {
     @include flex-align-start-justify-center;
     @include full-size;
+    overflow: auto;
     gap: 1rem;
+    flex: 1;
 
     &--status {
       @include flex-align-start-justify-start;

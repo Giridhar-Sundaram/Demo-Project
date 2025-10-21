@@ -6,12 +6,31 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+}
+
+/* For Webkit browsers */
+*::-webkit-scrollbar {
+  width: 6px;
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 html {
   scroll-behavior: smooth;
   font-size: $base-font-size;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
 }
 
 a {
@@ -33,12 +52,37 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%; /* Set height definitively based on viewport */
-  min-height: 100vh;
+  width: 100%;
   position: relative;
   line-height: 1.5;
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+section {
+  @include make-square(100%);
+}
+
+nav {
+  height: 5.2rem;
+}
+
+main {
+  display: block;
+  width: 100%;
+  height: calc(100% - 5.2rem);
+
+  aside {
+    float: left;
+    height: 100%;
+    width: 15%;
+  }
+
+  #project-layout {
+    width: calc(100% - 15%);
+    float: left;
+  }
 }
 
 img,
@@ -75,6 +119,7 @@ div {
 }
 
 button {
+  background-color: transparent;
   outline: none;
   border: none;
 }
@@ -95,16 +140,28 @@ textarea {
 #ember-body {
   isolation: isolate;
   background-color: $sky-blue-200;
-  padding: 3rem 2rem 5rem 2rem;
   height: 100%;
 }
 
 #portal {
-  display: none;
+  display: block;
   position: absolute;
-  top: 0px;
+  // top: -100vh;
   width: 100vw;
   height: 100vh;
   background-color: rgba($black, 0.4);
-  z-index: 1000;
+  z-index: -1000;
+  opacity: 0;
+
+  transition: all 0.1s ease-in-out;
 }
+
+#project-layout {
+  @include make-square(100%);
+}
+
+.red-astrick {
+  color: $error-700;
+}
+
+@include task-status-states;

@@ -3,7 +3,50 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.all.includes(:tasks, :collaborations)
+
+    respond_to do |format|
+      format.json do 
+        project_metrics = @projects.map do |project|
+          task_counts = project.tasks.group_by(&:task_status).transform_values(&:count)
+          
+          todo_count       = task_counts.fetch('todo', 0)
+          inprogress_count = task_counts.fetch('inprogress', 0)
+          done_count       = task_counts.fetch('done', 0)
+          total_tasks      = todo_count + inprogress_count + done_count
+          
+          progress_percent = total_tasks.positive? ? ((done_count.to_f / total_tasks) * 100).round : 0
+          project_status = if total_tasks == done_count && total_tasks.positive?
+                            'done'
+                          elsif inprogress_count.positive?
+                            'inprogress'
+                          else
+                            'todo'
+                          end
+
+          {
+            id: project.id,
+            project_name: project.project_name,
+            project_key: project.project_key,
+            project_status: project_status,
+            todo_count: todo_count,
+            inprogress_count: inprogress_count,
+            done_count: done_count,
+            total_tasks: total_tasks,
+            progress_percent: progress_percent,
+            collaborations: project.collaborations.map do |collaboration|
+              {
+                id: collaboration.user.id,
+                user_name: collaboration.user.user_name,  
+                email: collaboration.user.email 
+              }
+            end
+          }
+        end
+
+        render json: project_metrics, status: :ok
+      end
+    end
   end
 
   # GET /projects/1 or /projects/1.json
@@ -81,6 +124,17 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.expect(project: [ :project_name, :project_key, :project_owner_id ])
+      # params.expect(project: [ :project_name, :project_key, :project_owner_id ])
+      params.require(:project).permit(
+        :project_name, 
+        :project_key, 
+        :project_owner_id,
+        
+        collaborations_attributes: [ 
+          :user_id, # The ID of the user to link
+          :id,
+          :_destroy 
+        ]
+      )
     end
 end

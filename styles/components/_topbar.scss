@@ -6,9 +6,10 @@
   height: 5.2rem;
   padding: 1rem 2.2rem;
   border-bottom: 1px solid $grey-100;
+  background-color: $white;
 
   &__user {
-    &--action {
+    &-action {
       @include flex-align-center-justify-center;
       gap: 1.4rem;
 
@@ -17,7 +18,7 @@
       }
     }
 
-    &--profile {
+    &-profile {
       width: 2.4rem !important;
     }
   }

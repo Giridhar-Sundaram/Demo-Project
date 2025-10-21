@@ -1,0 +1,76 @@
+<ModalLayout @closeModal={{this.closeModal}}>
+  <div class="new-project" {{click-stop-propagation}}>
+    <div class="new-project__inputs">
+      <div>
+        <h3>Create Project</h3>
+        <br />
+        <p>Explore what’s possible when you collaborate with your team. Edit
+          project details anytime in project settings.</p>
+        <p>Required fields are marked with an asterisk
+          <span class="red-astrick">*</span>
+        </p>
+
+        <div class="input-field">
+          <label class="input-field__label" for="project_id_input">
+            Project Name
+            <span class="red-astrick">*</span></label>
+          <input
+            type="text"
+            value={{this.projectName}}
+            name=""
+            id="project_id_input"
+            autofocus="autofocus"
+            autocomplete="email"
+            {{on "input" this.setProjectName}}
+          />
+        </div>
+        <br />
+        <br />
+        <div class="input-field">
+          <label class="input-field__label" for="user_email">
+            Project Key
+            <span class="red-astrick">*</span></label>
+          <input
+            class="project-key"
+            type="text"
+            value={{this.projectKey}}
+            name=""
+            id="user_email"
+            autofocus="autofocus"
+            autocomplete="email"
+            {{on "input" this.setProjectKey}}
+          />
+        </div>
+        <br />
+        <br />
+        <div class="new-project__collaborators">
+          <label class="input-field__label" for="project_key_id">
+            Project Collaborators
+          </label>
+          <br />
+          <br />
+          <div class="new-project__collaborators-card">
+            {{#each this.userList as |user|}}
+              <Utils::UserCard
+                @user={{user}}
+                @toggleCollaborator={{this.toggleCollaborator}}
+              />
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      <button
+        class="btn--primary btn--fit-content btn--primary--sm"
+        {{on "click" this.createNewProject}}
+      >
+        Create
+      </button>
+    </div>
+    <div class="new-project__illustration">
+      <Utils::NewProjectSvg
+        @projectName={{this.projectName}}
+        @projectKey={{this.projectKey}}
+      />
+    </div>
+  </div>
+</ModalLayout>

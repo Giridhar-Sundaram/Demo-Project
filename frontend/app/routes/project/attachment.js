@@ -5,10 +5,4 @@ export default class ProjectAttachmentRoute extends Route {
   model() {
     return this.modelFor('project');
   }
-
-  setupController(controller, model) {
-    super.setupController(controller, model);
-    controller.attachments = model.attachments;
-    controller.projectId = model.projectId;
-  }
 }

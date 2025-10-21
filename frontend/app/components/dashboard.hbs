@@ -1,0 +1,9 @@
+<section class="dashboard">
+  <p class="dashboard__title">All Projects</p>
+
+  <div class="dashboard__grid">
+    {{#each this.projects as |project|}}
+      <Dashboard::card @project={{project}} />
+    {{/each}}
+  </div>
+</section>

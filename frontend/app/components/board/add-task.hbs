@@ -1,7 +1,7 @@
-<div class="new-task">
+<div class="add-task">
 
   <textarea
-    class="new-task__textarea"
+    class="add-task__textarea"
     rows="2"
     maxlength="255"
     placeholder="Enter Task here"
@@ -11,20 +11,34 @@
   >
   </textarea>
 
-  <div class="new-task__details">
+  <div class="add-task__details">
 
-    <div class="new-task__details__controls">
+    <div class="add-task__details-controls">
       <Common::Picker::PriorityPicker
         @selectedPriority={{this.taskPriority}}
         @onSelectionOfPriority={{this.selectTaskPriority}}
-      />
+      >
+        <button>
+          <img
+            src={{concat
+              "/assets/icons/task-priority-"
+              this.taskPriority
+              ".svg"
+            }}
+          />
+        </button>
+      </Common::Picker::PriorityPicker>
       <Common::Picker::DatePicker
         @selectedDate={{this.taskDueDate}}
         @onSelectionOfDate={{this.selectTaskDueDate}}
-      />
-
+      >
+        <button>
+          <img src="/assets/icons/fi-rr-calendar.svg" />
+        </button>
+      </Common::Picker::DatePicker>
+      <button class="todo">{{moment-format this.taskDueDate "DD-MMM"}}</button>
     </div>
-    <div>
+    <div class="add-task__details-submit">
       <button class="submit" type="button" {{on "click" this.close}}>
         <img src="/assets/icons/fi-rr-cross-small.svg" />
       </button>

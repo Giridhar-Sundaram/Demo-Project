@@ -1,15 +1,14 @@
 {{#if this.edit}}
   <div class="editable-textarea">
     <textarea
-      class={{concat "new-task__textarea " @type}}
+      class={{concat "add-task__textarea " @type}}
       rows="1"
-      maxlength="255"
+      maxlength={{@maxlength}}
       placeholder="Enter Task here"
       value={{this.content}}
       autofocus="autofocus"
       {{on "input" this.changeContent}}
-      {{on "input" this.autoGrowTextarea}}
-      {{on "focus" this.autoGrowTextarea}}
+      {{auto-grow-height}}
       {{auto-focus}}
     >
     </textarea>

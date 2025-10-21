@@ -7,6 +7,7 @@ import { PRIORITY_VALUES } from 'frontend/constants/priority-types';
 
 export default class CommonProrityPicker extends Component {
   @tracked priority;
+  @tracked open;
 
   get pickerIcon() {
     return '/assets/icons/task-priority-' + this.args.selectedPriority + '.svg';
@@ -19,11 +20,13 @@ export default class CommonProrityPicker extends Component {
   }
 
   @action
-  selectPriority(priority, closeDropdown) {
-    this.args.onSelectionOfPriority(priority);
+  flipOpen() {
+    this.open = !this.open;
+  }
 
-    if (typeof closeDropdown === 'function') {
-      closeDropdown();
-    }
+  @action
+  selectPriority(priority) {
+    this.args.onSelectionOfPriority(priority);
+    this.flipOpen();
   }
 }

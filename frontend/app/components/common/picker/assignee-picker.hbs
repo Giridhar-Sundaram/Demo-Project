@@ -1,0 +1,21 @@
+<div class="floating-picker" {{on "click" this.flipOpen}}>
+  {{yield}}
+  <Common::FloatingPicker @open={{this.open}} as |closePickerAction|>
+    <div class="dropdown">
+      {{#each this.visibleAssignee as |assignee|}}
+        <div
+          class="dropdown__content"
+          {{on "click" (fn this.selectAssignee assignee)}}
+        >
+          <img
+            src={{concat
+              "https://api.dicebear.com/9.x/initials/svg?radius=50&size=24&seed="
+              assignee.user_name
+            }}
+          />
+          <span>{{assignee.user_name}}</span>
+        </div>
+      {{/each}}
+    </div>
+  </Common::FloatingPicker>
+</div>

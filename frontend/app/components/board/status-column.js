@@ -5,6 +5,7 @@ import { service } from '@ember/service';
 
 export default class BoardStatusColumn extends Component {
   @service projectDataService;
+  @service taskPersistanceService;
 
   @tracked isDragOver = false;
 
@@ -37,12 +38,14 @@ export default class BoardStatusColumn extends Component {
       const taskId = parseInt(dataTransfer.getData('text/plain'));
 
       this.args.setIsDragging(false, '');
-      this.args.changeTaskStatus(taskId, this.args.statusClass);
+      // this.args.changeTaskStatus(taskId, this.args.statusClass);
 
-      await this.projectDataService.updateTaskStatus(
+      await this.taskPersistanceService.updateTaskStatus(
         taskId,
         this.args.statusClass,
       );
-    } catch (exception) {}
+    } catch (exception) {
+      console.error(exception);
+    }
   }
 }

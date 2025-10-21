@@ -2,15 +2,21 @@
 
 .btn {
   @include flex-align-center-justify-center;
+  @include text-bold-sm;
   outline: none;
   border: none;
   width: 100%;
   cursor: pointer;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 2px;
 
   &:focus {
     outline: none;
+  }
+
+  &--fit-content {
+    width: fit-content !important;
+    height: fit-content !important;
   }
 
   &--primary {
@@ -59,7 +65,6 @@
 
     button {
       @include flex-align-center-justify-center;
-      @include text-medium-sm;
       color: $grey-800;
       gap: 6px;
       padding: 8px 16px;

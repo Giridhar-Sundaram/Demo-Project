@@ -1,28 +1,37 @@
 @import "../abstracts/index";
 
 .floating-picker {
-  @include flex-align-center-justify-center;
+  @include flex-align-center-justify-start;
   position: relative;
+  gap: 1rem;
+  width: 100%;
 
   button {
     @include make-square(24px);
   }
 
-  img {
-    @include make-square(16px);
+  // img {
+  //   @include make-square(16px);
+  // }
+
+  .is-date-picker {
+    width: fit-content !important;
   }
 
   &__container {
-    display: none;
+    transition: all 0s;
+    display: block;
     position: absolute;
-    z-index: 0;
+    z-index: 1000;
     background: $white;
-    top: 0px;
-    left: 0px;
+    top: -10000px;
+    left: -10000px;
     padding: 4px;
     border-radius: 4px;
     border: 1px solid $grey-50;
     box-shadow: $box-shadow-1;
+    width: 100%;
+    min-width: fit-content;
 
     .ember-power-calendar {
       @include outfit-font;

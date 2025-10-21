@@ -1,13 +1,16 @@
-<Common::FloatingPicker @icon={{this.pickerIcon}} as |closePickerAction|>
-  <div class="dropdown">
-    {{#each this.visiblePriorityList as |priority|}}
-      <button
-        class="dropdown__content"
-        {{on "click" (fn this.selectPriority priority closePickerAction)}}
-      >
-        <img src={{concat "/assets/icons/task-priority-" priority ".svg"}} />
-        <span>{{priority}}</span>
-      </button>
-    {{/each}}
-  </div>
-</Common::FloatingPicker>
+<div class="floating-picker" {{on "click" this.flipOpen}}>
+  {{yield}}
+  <Common::FloatingPicker @open={{this.open}} as |closePickerAction|>
+    <div class="dropdown">
+      {{#each this.visiblePriorityList as |priority|}}
+        <div
+          class="dropdown__content"
+          {{on "click" (fn this.selectPriority priority)}}
+        >
+          <img src={{concat "/assets/icons/task-priority-" priority ".svg"}} />
+          <span>{{priority}}</span>
+        </div>
+      {{/each}}
+    </div>
+  </Common::FloatingPicker>
+</div>

@@ -1,3 +1,16 @@
 {{page-title "Frontend"}}
+<section>
+  <Navbar
+    @setOpenModal={{this.setOpenModal}}
+    @userName={{this.currentUserName}}
+  />
+  <main>{{outlet}}</main>
+</section>
 
-{{outlet}}
+{{#if this.isCreateProjectModalOpen}}
+  <Modal::NewProject />
+{{/if}}
+
+{{#if this.isCreateTaskModalOpen}}
+  <Modal::NewTask />
+{{/if}}

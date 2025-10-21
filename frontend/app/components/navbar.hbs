@@ -1,0 +1,27 @@
+<nav class="topbar">
+  <LinkTo @route="index" class="logo">
+    <img src="/assets/icons/primary-icon.svg" alt="brand-logo" />
+    <label>Project B</label>
+  </LinkTo>
+  <div class="topbar__user-action">
+    <Common::Picker::CreateNew @onSelection={{@setOpenModal}}>
+      <button class="btn--secondary btn--secondary--sm btn--fit-content">
+        <img
+          src="/assets/icons/add-icon-primary.svg"
+          alt="create a new project or task"
+        />
+        Create
+      </button>
+    </Common::Picker::CreateNew>
+    <img src="/assets/icons/fi-rr-bell.svg" alt="brand-logo" />
+    <Common::Picker::ProfileSettingPicker>
+      <img
+        src={{concat
+          "https://api.dicebear.com/9.x/initials/svg?radius=50&size=24&seed="
+          @userName
+        }}
+        class="topbar__user-profile"
+      />
+    </Common::Picker::ProfileSettingPicker>
+  </div>
+</nav>

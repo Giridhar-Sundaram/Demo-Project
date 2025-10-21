@@ -1,3 +1,26 @@
-<ProjectLayout as |boardSearch|>
-  {{outlet searchBoard=boardSearch}}
-</ProjectLayout>
+<aside>
+  <div class="sidebar">
+    <div class="sidebar__heading">
+      <label>Projects</label>
+      <img
+        {{on "click" this.openCreateProjectModal}}
+        src="/assets/icons/add.svg"
+        alt="add new project"
+        class="btn--primary--round btn--primary--round--sm btn--primary--white"
+      />
+    </div>
+    <div class="sidebar__content">
+      {{#each this.projects as |project|}}
+        <div class="projects">
+          <Projects::SideView @project={{project}} />
+        </div>
+      {{/each}}
+
+    </div>
+  </div>
+</aside>
+<div id="project-layout">
+  <ProjectLayout as |boardSearch|>
+    {{outlet searchBoard=boardSearch}}
+  </ProjectLayout>
+</div>

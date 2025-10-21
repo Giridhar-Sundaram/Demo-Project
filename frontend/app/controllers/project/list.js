@@ -11,4 +11,8 @@ export default class ProjectListController extends Controller {
   get projectKey() {
     return this.projectDataService.projectKey;
   }
+
+  get tasks() {
+    return this.projectDataService.projectTasksList;
+  }
 }

@@ -21,10 +21,10 @@
     <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body>
+  <body id="ember-body">
     <%= yield %>
-    <%= render partial: "layouts/shared/topbar"%>
-    <%= render partial: "layouts/shared/ember_page"%>
+    <%#= render partial: "layouts/shared/topbar"%>
+    <%#= render partial: "layouts/shared/ember_page"%>
     <div id="portal"></div>
   </body>
 </html>

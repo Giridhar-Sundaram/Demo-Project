@@ -6,6 +6,7 @@ import { action } from '@ember/object';
 
 export default class CommonDatePicker extends Component {
   @tracked center = new Date();
+  @tracked open = false;
 
   @action
   onCenterChange(selected) {
@@ -13,13 +14,14 @@ export default class CommonDatePicker extends Component {
   }
 
   @action
-  onSelectionOfDate(closePickerAction, selection) {
+  onSelectionOfDate(selection) {
     this.args.onSelectionOfDate(selection);
-
     this.selectedDate = selection.date;
+    this.flipOpen();
+  }
 
-    if (closePickerAction) {
-      closePickerAction();
-    }
+  @action
+  flipOpen() {
+    this.open = !this.open;
   }
 }

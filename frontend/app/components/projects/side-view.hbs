@@ -1,0 +1,46 @@
+<figure
+  class="projects__heading"
+  data-project-id="1"
+  {{on "click" (fn this.flipDropdown)}}
+>
+  <img
+    src={{concat
+      "https://api.dicebear.com/9.x/bottts-neutral/svg?seed="
+      @project.project_key
+    }}
+    alt="Backend Project"
+  />
+  <figcaption>{{@project.project_name}}</figcaption>
+  <div class="dropdown-icon">
+    <img
+      src="/assets/icons/fi-rr-angle-small-down.svg"
+      alt="Fi rr angle small down"
+    />
+  </div>
+</figure>
+
+<ul
+  class="projects__actions{{if this.dropdownOpen ' open'}}"
+  id={{concat "project-actions-" @project.id}}
+>
+  <li>
+    <LinkTo @route="project.board" @model={{@project.id}}>
+      <img alt="Project Board" src="/assets/icons/board.svg" />
+      <span>Board</span>
+    </LinkTo>
+  </li>
+
+  <li>
+    <LinkTo @route="project.list" @model={{@project.id}}>
+      <img alt="Project List" src="/assets/icons/fi-rr-list.svg" />
+      <span>List</span>
+    </LinkTo>
+  </li>
+
+  <li>
+    <LinkTo @route="project.attachment" @model={{@project.id}}>
+      <img alt="Project Attachments" src="/assets/icons/fi-rr-clip.svg" />
+      <span>Attachments</span>
+    </LinkTo>
+  </li>
+</ul>

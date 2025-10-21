@@ -6,16 +6,25 @@
   {{on "click" this.openModal}}
 >
   <span>{{@task.task_name}}</span>
-
+  <div class="task__dueData">
+    <button class="todo">{{moment-format @task.task_dueDate "DD-MMM"}}</button>
+  </div>
   <div class="task__footer">
     <span>{{concat this.projectKey " - " @task.id}}</span>
 
     <div class="icon-container">
       <img
+        {{tippy
+          "Custom tooltip"
+          placement="bottom"
+          trigger="mouseenter"
+          theme="light-border"
+        }}
         src={{concat "/assets/icons/task-priority-" @task.task_priority ".svg"}}
         alt="Task Priority"
       />
       <img
+        {{tippy content=@task.assignee.user_name}}
         src={{concat
           "https://api.dicebear.com/9.x/initials/svg?radius=50&size=24&seed="
           @task.assignee.user_name
@@ -25,6 +34,3 @@
     </div>
   </div>
 </div>
-{{#if this.isModalOpen}}
-  <Modal::Edit-Task @task={{@task}} @closeModal={{this.closeModal}} />
-{{/if}}

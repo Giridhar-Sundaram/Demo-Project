@@ -1,11 +1,10 @@
 @import "../abstracts/index";
 
 .sidebar {
-  @include flex-align-center-justify-center;
-  flex-direction: column;
+  background-color: $white;
   height: 100%;
   width: 100%;
-  gap: 1.4rem;
+  padding: 3rem 1.2rem 2rem 2.2rem;
 
   &__heading {
     @include flex-align-center-justify-between;
@@ -17,9 +16,8 @@
   }
 
   &__content {
-    @include flex-align-start-justify-start;
-    flex-direction: column;
-    flex: 1;
+    // @include flex-align-start-justify-start;
+    // flex-direction: column;
     width: 100%;
   }
 }

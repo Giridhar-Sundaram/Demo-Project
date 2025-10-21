@@ -20,15 +20,6 @@ export default class EditableHeader extends Component {
   }
 
   @action
-  autoGrowTextarea(event) {
-    if (this.isTypeHeader) return;
-
-    const element = event.target;
-    element.style.height = 'auto';
-    element.style.height = element.scrollHeight + 'px';
-  }
-
-  @action
   flipEdit() {
     this.edit = !this.edit;
   }

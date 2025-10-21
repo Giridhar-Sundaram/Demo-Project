@@ -3,13 +3,19 @@
 @import "button";
 @import "tasks";
 @import "document_gallery";
+@import "dropdown";
+@import "modal";
+@import "accordian";
+@import "editable_textarea";
+@import "floating_picker";
 
 // app layout components
 @import "logo";
 @import "topbar";
 @import "sidebar";
 @import "table";
+@import "dashboard";
 
 // app components
 @import "projects";
-@import "project_grid";
+@import "comment";

@@ -4,10 +4,13 @@ import { action } from '@ember/object';
 import { service } from '@ember/service';
 import { PRIORITY_TYPES } from 'frontend/constants/priority-types';
 
-export default class BoardNewTask extends Component {
+export default class BoardAddTask extends Component {
   @service projectDataService;
+  @service taskPersistanceService;
 
   @tracked taskName = '';
+  @tracked taskDescription = '';
+  @tracked taskAssignee = 1;
   @tracked taskDueDate = new Date(new Date().setDate(new Date().getDate() + 5));
   @tracked taskPriority = PRIORITY_TYPES.MEDIUM;
 
@@ -22,16 +25,21 @@ export default class BoardNewTask extends Component {
       !this.taskName ||
       !this.taskDueDate ||
       !this.taskPriority ||
+      // !this.taskDescription ||
+      !this.taskAssignee ||
       !this.args.statusClass
     )
       return;
-    const newTask = await this.projectDataService.createNewTask(
-      this.taskName,
-      this.taskDueDate,
-      this.taskPriority,
-      this.args.statusClass,
-    );
 
+    const taskObj = {
+      taskName: this.taskName,
+      taskDescription: this.taskDescription,
+      taskDueDate: this.taskDueDate,
+      taskPriority: this.taskPriority,
+      taskStatus: this.args.statusClass,
+      taskAssignee: this.taskAssignee,
+    };
+    await this.taskPersistanceService.createTask(taskObj);
     this.close();
   }
 

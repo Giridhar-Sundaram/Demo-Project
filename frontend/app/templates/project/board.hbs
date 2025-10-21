@@ -27,4 +27,8 @@
   @setIsDragging={{this.setIsDragging}}
   @changeTaskStatus={{this.changeTaskStatus}}
 />
+
+{{#if this.isModalOpen}}
+  <Modal::Edit-Task />
+{{/if}}
 {{outlet}}

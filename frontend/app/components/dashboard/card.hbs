@@ -1,0 +1,33 @@
+<LinkTo
+  @route="project.board"
+  @model={{@project.id}}
+  class="card"
+  style={{concat "border-left: 10px solid " this.borderColor}}
+>
+  <EmberChart
+    @type="pie"
+    @data={{this.pieChartData}}
+    @options={{this.pieChartOptions}}
+    class="card__chart"
+  />
+  <div class="card__info">
+    <figure class="project__header">
+      <img
+        src={{concat
+          "https://api.dicebear.com/9.x/bottts-neutral/svg?seed="
+          @project.project_key
+        }}
+        {{get-dominant-color this.setBorderColor}}
+      />
+      <h2 class="card__name">{{@project.project_name}}</h2>
+    </figure>
+  </div>
+  <div class="project__status">
+    <button
+      class={{concat @project.project_status " card__description"}}
+    >{{@project.project_status}}</button>
+  </div>
+
+</LinkTo>
+
+{{!-- {{on "click" (fn this.goToProject @project.id)}} --}}

@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  
+  namespace :api do
+    resources :users, only: [:index] do
+    collection do 
+        get :current 
+      end
+    end
+  end
   get "home/index"
   resources :task_tags
   resources :task_attachments

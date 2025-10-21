@@ -1,9 +1,7 @@
 <nav class="topbar">
   <%= render partial:"layouts/shared/logo"%>
-  <div class="topbar__user--action">
+  <div class="topbar__user-action">
     <%= image_tag "icons/fi-rr-bell.svg"%>
-    <%= link_to destroy_user_session_path, data: { turbo_method: :delete } do %>
-      <%= image_tag "https://api.dicebear.com/9.x/initials/svg?radius=50&size=24&seed=Felix" ,class: "topbar__user--profile"%>
-    <% end %>
+    <%= image_tag "https://api.dicebear.com/9.x/initials/svg?radius=50&size=24&seed=Felix" ,class: "topbar__user-profile"%>
   </div>
 </nav>

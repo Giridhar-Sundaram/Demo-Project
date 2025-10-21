@@ -1,0 +1,143 @@
+<ModalLayout @closeModal={{this.closeModal}}>
+  <div class="new-task" {{click-stop-propagation}}>
+    <div class="new-task__header">
+      <div>
+        <img src="/assets/icons/sub-task.svg" alt="task-icon" />
+        <h4>Create New Task</h4>
+      </div>
+      <div>
+        <button
+          class="btn--primary btn--primary--white"
+          type="button"
+          {{on "click" this.closeModal}}
+        >
+          <img src="/assets/icons/fi-rr-cross-small.svg" />
+        </button>
+      </div>
+    </div>
+
+    <section>
+
+      <p>Required fields are marked with an asterisk
+        <span class="red-astrick">*</span>
+      </p>
+      <p>Project <span class="red-astrick">*</span> </p>
+      <Common::Picker::ProjectPicker
+        @selectedProjectId={{this.project}}
+        @onSelectionOfProject={{this.selectProject}}
+      >
+        <div class="new-task__dropdown">
+          <img
+            src={{concat
+              "https://api.dicebear.com/9.x/bottts-neutral/svg?seed="
+              this.selectedProject.project_key
+            }}
+          />
+          <span>{{this.selectedProject.project_name}}</span>
+          <img src="/assets/icons/fi-rr-angle-small-down.svg" />
+        </div>
+      </Common::Picker::ProjectPicker>
+
+      <Utils::SpacingContainer />
+
+      <p>Task Name <span class="red-astrick">*</span> </p>
+      <textarea
+        class="task-name"
+        rows="1"
+        maxlength={{@maxlength}}
+        placeholder="Add Task Name"
+        value={{this.content}}
+        autofocus="autofocus"
+        {{!-- {{auto-grow-height}} --}}
+        {{on "input" this.changeTaskName}}
+        {{auto-focus}}
+      ></textarea>
+
+      <Utils::SpacingContainer />
+
+      <p>Task Due Date <span class="red-astrick">*</span> </p>
+      <Common::Picker::DatePicker
+        @selectedDate={{this.taskDueDate}}
+        @onSelectionOfDate={{this.selectTaskDueDate}}
+      >
+        <div class="new-task__dropdown">
+          <span>{{moment-format this.taskDueDate "DD-MMM-YYYY"}}</span>
+          <img src="/assets/icons/fi-rr-calendar.svg" />
+        </div>
+      </Common::Picker::DatePicker>
+
+      <Utils::SpacingContainer />
+
+      <p>Task Priority <span class="red-astrick">*</span> </p>
+      <Common::Picker::PriorityPicker
+        @selectedPriority={{this.taskPriority}}
+        @onSelectionOfPriority={{this.selectTaskPriority}}
+      >
+        <div class="new-task__dropdown">
+          <span>{{this.taskPriority}}</span>
+          <img src="/assets/icons/fi-rr-angle-small-down.svg" />
+        </div>
+      </Common::Picker::PriorityPicker>
+
+      <Utils::SpacingContainer />
+
+      <p>Task Description <span class="red-astrick">*</span> </p>
+      <textarea
+        class="task-description"
+        rows="1"
+        maxlength={{@maxlength}}
+        placeholder="Add Task Description"
+        value={{this.content}}
+        autofocus="autofocus"
+        {{auto-grow-height}}
+        {{on "input" this.changeTaskDescription}}
+        {{auto-focus}}
+      ></textarea>
+
+      <Utils::SpacingContainer />
+
+      <p>Task Assignee <span class="red-astrick">*</span> </p>
+      <Common::Picker::AssigneePicker
+        @selectedAssignee={{this.taskAssignee}}
+        @onSelectionOfAssignee={{this.selectAssignee}}
+      >
+        <div class="new-task__dropdown">
+          <img
+            src={{concat
+              "https://api.dicebear.com/9.x/initials/svg?radius=50&size=24&seed="
+              this.taskAssignee.user_name
+            }}
+          />
+          <span>{{this.taskAssignee.user_name}}</span>
+          <img src="/assets/icons/fi-rr-angle-small-down.svg" />
+        </div>
+      </Common::Picker::AssigneePicker>
+
+      <Utils::SpacingContainer />
+
+      <p>Task Status </p>
+      <Common::Picker::StatusPicker
+        @selectedStatus={{this.taskStatus}}
+        @onSelectionOfStatus={{this.selectTaskStatus}}
+      >
+        <button
+          class={{concat this.taskStatus " status-dropdown"}}
+          type="button"
+        >
+          {{this.taskStatus}}
+          <img src="/assets/icons/fi-rr-angle-small-down.svg" />
+        </button>
+      </Common::Picker::StatusPicker>
+    </section>
+    <div class="new-task__submit">
+      <button
+        class="btn--primary btn--primary--grey btn--primary--sm"
+        {{on "click" this.closeModal}}
+      >Cancel</button>
+      <button
+        class="btn--primary btn--primary--sm"
+        {{on "click" this.createTask}}
+      >Create</button>
+    </div>
+  </div>
+</ModalLayout>
